@@ -567,8 +567,29 @@ Kịch bản:
             self.progress_bar2.set(0.1)
             self.append_log("[1/4] Bắt đầu upload Media...")
             
-            uploaded_file = client.files.upload(file=self.video_path)
+            # Khắc phục lỗi 'ascii' codec khi file có tên tiếng Việt
+            import tempfile, shutil
+            safe_ascii_name = f"gemini_upload_temp_{int(time.time())}.mp4"
+            ascii_safe_path = os.path.join(os.path.dirname(self.video_path), safe_ascii_name)
             
+            uploaded_file = None
+            try:
+                try:
+                    os.link(self.video_path, ascii_safe_path)
+                except:
+                    shutil.copy2(self.video_path, ascii_safe_path)
+                
+                uploaded_file = client.files.upload(file=ascii_safe_path)
+            finally:
+                try:
+                    if os.path.exists(ascii_safe_path):
+                        os.remove(ascii_safe_path)
+                except:
+                    pass
+            
+            if not uploaded_file:
+                raise Exception("Không thể tải file lên Gemini.")
+                
             self.append_log(f"Đã tải lên thành công. Tên File API: {uploaded_file.name}")
             self.status_label2.configure(text="Đang chờ Google xử lý video...")
             
