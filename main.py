@@ -976,15 +976,20 @@ Bạn là một chuyên gia YouTube SEO và Đạo diễn Nghệ thuật chuyên
 Dựa vào nội dung kịch bản dưới đây và hình ảnh thumbnail mẫu (nếu có), hãy tạo:
 1. 3 Tiêu đề video (giật tít, khơi gợi sự tò mò để tăng CTR cao nhất).
 2. 3 Đoạn prompt bằng tiếng Anh (chi tiết, miêu tả ánh sáng, góc máy, chất lượng 8k) để tôi dùng làm lệnh vẽ AI Thumbnail. 
-BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU (Đa dạng hóa bối cảnh, màu sắc và nhân vật) ĐỂ TẠO SỰ ĐA DẠNG:
-- Concept 1 (Epic/Hệ Thống/Xuyên Không): Bối cảnh tăm tối, xiềng xích ma thuật, màn hình UI hệ thống lơ lửng, hoặc nhân vật nam chính bùng nổ sức mạnh (glowing aura, lightning).
-- Concept 2 (Mỹ Nữ/Quyến Rũ/Kiếm Sư): Focus vào nhân vật nữ (beautiful and seductive, deep plunging neckline, high slit dress), cầm kiếm ma thuật, bối cảnh tiên cảnh (fairy tale, glowing lotuses, particles).
-- Concept 3 (Đại Lão/Bí Ẩn/Kỳ Ngộ): Focus vào một lão giả thần bí, mắt phát sáng, thần thú (rồng, cọp), hoặc khung cảnh cổ đại tráng lệ (ancient ruins, giant artifacts).
 
-YÊU CẦU CHUNG CHO CẢ 3 PROMPT:
+BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU NHƯNG PHẢI ĐÚNG VỚI NỘI DUNG KỊCH BẢN:
+- Concept 1 (Cao Trào/Chiến Đấu): Lấy cảnh hành động hoặc nhân vật nam chính/kẻ thù bùng nổ sức mạnh CÓ THẬT trong kịch bản (glowing aura, lightning). Bối cảnh tối, kỳ bí.
+- Concept 2 (Nhân vật Nữ/Quyến rũ hoặc Tình cảm): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản (beautiful and seductive, high slit dress) đặt trong bối cảnh lãng mạn hoặc tiên cảnh. Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
+- Concept 3 (Bí Ẩn/Boss/Toàn Cảnh): Lấy một nhân vật phụ bí ẩn, một quái thú, hoặc khung cảnh tông môn/di tích rộng lớn ĐƯỢC NHẮC ĐẾN trong kịch bản.
+
+YÊU CẦU VỀ CHỮ (TYPOGRAPHY) DỰA CHẶT CHẼ VÀO KỊCH BẢN:
+- Text góc trái (Top Left Badge): Hãy TỰ PHÂN TÍCH THỂ LOẠI của kịch bản này để viết (Ví dụ: Nếu kịch bản nói về Hệ Thống thì ghi "HỆ THỐNG", nếu tu tiên thì ghi "TU TIÊN", nếu trùng sinh ghi "TRỌNG SINH", hoặc "TẬP MỚI").
+- Text chính (Bottom Title): Rút trích 1 câu siêu ngắn (3-6 chữ) mô tả ĐÚNG diễn biến sốc nhất của kịch bản này (Ví dụ: "TIÊU DIỆT TÔNG MÔN", "THỨC TỈNH HUYẾT MẠCH").
+- Màu sắc chữ: Phải KHÁC NHAU giữa 3 prompt. (Ví dụ: Prompt 1 dùng chữ Vàng viền Đen tỏa sáng đỏ, Prompt 2 dùng chữ Tím viền Trắng tỏa sáng Neon Cyan, Prompt 3 dùng chữ Xanh lá viền Đen).
+- Ví dụ cách chèn text: "Top left corner has text 'TRỌNG SINH' in purple badge. Bottom text: 'THỨC TỈNH VÕ THẦN' in large 3D bold font, yellow gradient with thick black stroke and fiery glow."
+
+YÊU CẦU CHUNG:
 - Chất lượng & Phong cách: "3D Chinese animation style, Donghua, Unreal Engine 5 render, highly detailed 3D masterpiece, cinematic lighting, extreme contrast".
-- Chữ Tiếng Việt 3D YouTube Style: Ở mỗi prompt, hãy chỉ định 1 câu text Tiếng Việt thật ngắn (2-4 chữ, ví dụ: "TU TIÊN", "XUYÊN KHÔNG", "HỆ THỐNG") đặt ở góc trên bên trái (Top Left) và 1 dòng title chính ở dưới cùng (Bottom). YÊU CẦU MÀU SẮC CHỮ PHẢI KHÁC NHAU GIỮA CÁC PROMPT (Ví dụ: Prompt 1 dùng chữ Vàng viền Đen tỏa sáng đỏ, Prompt 2 dùng chữ Tím viền Trắng tỏa sáng Neon Cyan, Prompt 3 dùng chữ Xanh lá viền Đen).
-- Ví dụ cách chèn text: "Top left corner has text 'PHẦN 1' in purple badge. Bottom text: 'THỨC TỈNH VÕ THẦN' in large 3D bold font, yellow gradient with thick black stroke and fiery glow."
 
 3. 1 Đoạn mô tả video (Description) lôi cuốn, bao gồm các #hashtag thịnh hành.
 4. 1 Chuỗi các thẻ từ khóa (Tags) cách nhau bằng dấu phẩy (không có #, hoàn toàn bằng tiếng Việt có dấu, bám sát nội dung).
