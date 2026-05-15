@@ -1021,7 +1021,31 @@ Kịch bản thoại:
                         model=model_name,
                         contents=contents,
                         config=types.GenerateContentConfig(
-                            response_mime_type="application/json"
+                            response_mime_type="application/json",
+                            response_schema={
+                                "type": "OBJECT",
+                                "properties": {
+                                    "titles": {
+                                        "type": "ARRAY",
+                                        "description": "3 Tiêu đề video giật tít, tăng CTR",
+                                        "items": {"type": "STRING"}
+                                    },
+                                    "thumbnail_prompts": {
+                                        "type": "ARRAY",
+                                        "description": "3 Đoạn prompt tiếng Anh chi tiết, miêu tả ánh sáng, góc máy, chất lượng 8k (gồm text trên ảnh)",
+                                        "items": {"type": "STRING"}
+                                    },
+                                    "description": {
+                                        "type": "STRING",
+                                        "description": "Mô tả video lôi cuốn bao gồm hashtags"
+                                    },
+                                    "tags": {
+                                        "type": "STRING",
+                                        "description": "Chuỗi các thẻ từ khóa cách nhau bằng dấu phẩy"
+                                    }
+                                },
+                                "required": ["titles", "thumbnail_prompts", "description", "tags"]
+                            }
                         )
                     )
                     break
