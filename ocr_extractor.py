@@ -1,7 +1,45 @@
 import os
+import sys
 import subprocess
 import re
 from difflib import SequenceMatcher
+
+def _add_nvidia_dll_dirs():
+    """
+    Tự động tìm và đăng ký các thư mục chứa NVIDIA CUDA DLL
+    (nvidia-cublas-cu12, nvidia-cudnn-cu12 cài qua pip).
+    Phải gọi TRƯỚC KHI import onnxruntime để Windows tìm được DLL.
+    """
+    if sys.platform != 'win32':
+        return  # Linux/VPS Linux không cần, CUDA path được set tự động
+    try:
+        import site
+        site_packages = site.getsitepackages()
+        # Thêm cả user site-packages
+        user_site = site.getusersitepackages()
+        if user_site:
+            site_packages = [user_site] + list(site_packages)
+
+        added = []
+        for sp in site_packages:
+            nvidia_dir = os.path.join(sp, 'nvidia')
+            if not os.path.isdir(nvidia_dir):
+                continue
+            for pkg_name in os.listdir(nvidia_dir):
+                bin_dir = os.path.join(nvidia_dir, pkg_name, 'bin')
+                if os.path.isdir(bin_dir):
+                    try:
+                        os.add_dll_directory(bin_dir)
+                        added.append(bin_dir)
+                    except Exception:
+                        pass
+        return added
+    except Exception:
+        return []
+
+# Gọi ngay khi module được import, trước mọi thứ khác
+_add_nvidia_dll_dirs()
+
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()

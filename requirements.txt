@@ -8,3 +8,7 @@ onnxruntime-gpu
 opencv-python
 numpy
 requests
+# NVIDIA CUDA runtime DLLs (cần thiết cho GPU OCR, thay thế CUDA Toolkit)
+nvidia-cublas-cu12
+nvidia-cudnn-cu12
+nvidia-cuda-runtime-cu12
