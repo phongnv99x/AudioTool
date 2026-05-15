@@ -655,7 +655,7 @@ Kịch bản:
 
             # Lấy danh sách thư mục cảm xúc (mood folders) từ Kho_nhac
             import glob, os
-            offline_music_dir = r"E:\Tool\AudioTool\Downloads\Kho_nhac"
+            offline_music_dir = KHO_NHAC_DIR
             mood_folders = []
             if os.path.exists(offline_music_dir):
                 for item in os.listdir(offline_music_dir):
