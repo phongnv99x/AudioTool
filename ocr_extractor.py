@@ -98,14 +98,32 @@ def extract_subtitles_from_video(video_path, output_srt, log_callback=None, prog
     if log_callback: log_callback(f"✅ Đã khởi tạo OCR trên: {mode}")
     if log_callback: log_callback(f"Tổng số frame: {total_frames} | FPS: {fps:.1f} | Quét mỗi {process_interval} frame (~2fps)")
 
-    # --- Quét video trên 1 luồng GPU duy nhất ---
+    # --- Quét video ---
     cap = cv2.VideoCapture(video_path)
     subs = []
-    current_text = ""
+
+    # === State machine với cơ chế xác nhận 2 lần quét ===
+    # Thoại đang hoạt động
+    current_text       = ""
     current_start_time = 0
     last_detected_time = 0
-    frame_idx = 0
+
+    # Text đang chờ xác nhận (chưa đủ số lần quét)
+    pending_text       = ""
+    pending_start_time = 0
+    pending_hits       = 0   # Số lần quét liên tiếp thấy text này
+
+    # Cấu hình lọc
+    MIN_CONFIRM_SCANS = 2    # Cần xuất hiện ≥2 lần quét liên tiếp (~1s) mới chấp nhận
+    MIN_DURATION      = 0.8  # Thoại phải kéo dài ≥0.8 giây mới lưu (lọc flash UI)
+
+    frame_idx       = 0
     processed_count = 0
+
+    def _finalize_sub(text, start, end):
+        """Lưu subtitle nếu đủ thời lượng tối thiểu."""
+        if end - start >= MIN_DURATION:
+            subs.append({'text': text, 'start': start, 'end': end + 0.3})
 
     while cap.isOpened():
         ret = cap.grab()
@@ -144,47 +162,74 @@ def extract_subtitles_from_video(video_path, output_srt, log_callback=None, prog
                     if not has_chinese and len(detected_text) < 4:
                         detected_text = ""
 
+            # === XỬ LÝ STATE MACHINE ===
             if detected_text:
-                if not current_text:
-                    current_text = detected_text
-                    current_start_time = current_time_sec
-                    last_detected_time = current_time_sec
-                    # Bắt đầu câu mới -> log ra UI
-                    if text_callback:
-                        h = int(current_time_sec // 3600)
-                        m = int((current_time_sec % 3600) // 60)
-                        s = int(current_time_sec % 60)
-                        text_callback(f"[{h:02d}:{m:02d}:{s:02d}] {detected_text}")
-                else:
+                if current_text:
+                    # --- Đang có thoại active ---
                     if similar(current_text, detected_text) > 0.7:
+                        # Cùng thoại → kéo dài
                         last_detected_time = current_time_sec
                         if len(detected_text) > len(current_text):
                             current_text = detected_text
+                        pending_text = ""
+                        pending_hits = 0
                     else:
-                        if last_detected_time - current_start_time >= 0.2:
-                            subs.append({
-                                'text': current_text,
-                                'start': current_start_time,
-                                'end': last_detected_time + 0.3
-                            })
-                        current_text = detected_text
-                        current_start_time = current_time_sec
+                        # Khác thoại → vào trạng thái pending
+                        if similar(detected_text, pending_text) > 0.7:
+                            pending_hits += 1
+                            if len(detected_text) > len(pending_text):
+                                pending_text = detected_text
+                        else:
+                            # Hoàn toàn text mới → reset pending
+                            pending_text      = detected_text
+                            pending_start_time = current_time_sec
+                            pending_hits      = 1
+
+                        # Đủ xác nhận → kết thúc thoại cũ, bắt đầu thoại mới
+                        if pending_hits >= MIN_CONFIRM_SCANS:
+                            _finalize_sub(current_text, current_start_time, last_detected_time)
+                            current_text       = pending_text
+                            current_start_time = pending_start_time
+                            last_detected_time = current_time_sec
+                            if text_callback:
+                                h_ = int(current_start_time // 3600)
+                                m_ = int((current_start_time % 3600) // 60)
+                                s_ = int(current_start_time % 60)
+                                text_callback(f"[{h_:02d}:{m_:02d}:{s_:02d}] {current_text}")
+                            pending_text = ""
+                            pending_hits = 0
+                else:
+                    # --- Chưa có thoại active → track pending ---
+                    if similar(detected_text, pending_text) > 0.7:
+                        pending_hits += 1
+                        if len(detected_text) > len(pending_text):
+                            pending_text = detected_text
+                    else:
+                        pending_text      = detected_text
+                        pending_start_time = current_time_sec
+                        pending_hits      = 1
+
+                    # Đủ xác nhận → bắt đầu thoại mới
+                    if pending_hits >= MIN_CONFIRM_SCANS:
+                        current_text       = pending_text
+                        current_start_time = pending_start_time
                         last_detected_time = current_time_sec
-                        # Câu mới khác câu cũ -> log ra UI
                         if text_callback:
-                            h = int(current_time_sec // 3600)
-                            m = int((current_time_sec % 3600) // 60)
-                            s = int(current_time_sec % 60)
-                            text_callback(f"[{h:02d}:{m:02d}:{s:02d}] {detected_text}")
+                            h_ = int(current_start_time // 3600)
+                            m_ = int((current_start_time % 3600) // 60)
+                            s_ = int(current_start_time % 60)
+                            text_callback(f"[{h_:02d}:{m_:02d}:{s_:02d}] {current_text}")
+                        pending_text = ""
+                        pending_hits = 0
             else:
+                # --- Không phát hiện text ---
+                # Kết thúc thoại hiện tại
                 if current_text:
-                    if last_detected_time - current_start_time >= 0.2:
-                        subs.append({
-                            'text': current_text,
-                            'start': current_start_time,
-                            'end': last_detected_time + 0.3
-                        })
+                    _finalize_sub(current_text, current_start_time, last_detected_time)
                     current_text = ""
+                # Bỏ pending (text flash nhanh không đủ xác nhận)
+                pending_text = ""
+                pending_hits = 0
 
             processed_count += 1
             # Cập nhật tiến trình
@@ -198,13 +243,9 @@ def extract_subtitles_from_video(video_path, output_srt, log_callback=None, prog
 
     cap.release()
 
-    # Lưu câu cuối nếu video kết thúc đột ngột
-    if current_text and (last_detected_time - current_start_time >= 0.2):
-        subs.append({
-            'text': current_text,
-            'start': current_start_time,
-            'end': last_detected_time + 0.3
-        })
+    # Lưu thoại cuối nếu video kết thúc đột ngột
+    if current_text:
+        _finalize_sub(current_text, current_start_time, last_detected_time)
 
     # --- LƯU RA FILE SRT ---
     srt_file = pysrt.SubRipFile()
