@@ -1872,22 +1872,35 @@ KỊCH BẢN PHIM:
                       [("Video", "*.mp4 *.avi *.mkv *.mov"), ("Tất cả", "*.*")],
                       "Chọn file video từ Tab 5 (_Clean.mp4)...")
 
-        make_file_row(inp_frame, 1, "📝 SRT Việt:",
+        # Row 1: Nút khoanh vùng làm mờ
+        self.tab7_rois = []
+        roi_frame = ctk.CTkFrame(inp_frame, fg_color="transparent")
+        roi_frame.grid(row=1, column=1, columnspan=2, sticky="ew", padx=(0, 12), pady=(0, 6))
+        
+        self.btn_tab7_roi = ctk.CTkButton(roi_frame, text="🎯 Khoanh vùng cần làm mờ (0)", 
+                                          command=self.choose_multiple_rois_tab7,
+                                          fg_color="#8d6e63", hover_color="#6d4c41")
+        self.btn_tab7_roi.pack(side="left", padx=(0, 10))
+        
+        self.lbl_tab7_roi = ctk.CTkLabel(roi_frame, text="Tùy chọn: Làm mờ Logo, Watermark, v.v...", text_color="gray")
+        self.lbl_tab7_roi.pack(side="left")
+
+        make_file_row(inp_frame, 2, "📝 SRT Việt:",
                       "tab7_srt_entry",
                       [("SRT Subtitle", "*.srt"), ("Tất cả", "*.*")],
                       "Chọn file SRT đã dịch từ Tab 1...")
 
-        make_file_row(inp_frame, 2, "🎵 Nhạc nền:",
+        make_file_row(inp_frame, 3, "🎵 Nhạc nền:",
                       "tab7_bgm_entry",
                       [("Audio", "*.mp3 *.wav *.m4a *.aac"), ("Tất cả", "*.*")],
                       "Chọn file nhạc nền từ Tab 2...")
 
         # Draft folder row
         ctk.CTkLabel(inp_frame, text="📂 Draft folder:", width=120, anchor="e").grid(
-            row=3, column=0, padx=(12, 8), pady=6, sticky="e")
+            row=4, column=0, padx=(12, 8), pady=6, sticky="e")
         self.tab7_draft_entry = ctk.CTkEntry(
             inp_frame, placeholder_text="Tự động detect hoặc chọn thư mục CapCut Draft...")
-        self.tab7_draft_entry.grid(row=3, column=1, padx=(0, 8), pady=6, sticky="ew")
+        self.tab7_draft_entry.grid(row=4, column=1, padx=(0, 8), pady=6, sticky="ew")
 
         def browse_draft():
             path = filedialog.askdirectory(title="Chọn thư mục CapCut Draft")
@@ -1911,7 +1924,7 @@ KỊCH BẢN PHIM:
                 messagebox.showerror("Lỗi", str(e))
 
         draft_btn_frame = ctk.CTkFrame(inp_frame, fg_color="transparent")
-        draft_btn_frame.grid(row=3, column=2, padx=(0, 12), pady=6)
+        draft_btn_frame.grid(row=4, column=2, padx=(0, 12), pady=6)
         ctk.CTkButton(draft_btn_frame, text="Chọn...", width=70,
                       command=browse_draft).pack(side="left", padx=(0, 4))
         ctk.CTkButton(draft_btn_frame, text="🔍Auto", width=66,
@@ -1955,6 +1968,61 @@ KỊCH BẢN PHIM:
         self.log_box7.insert("end", msg + "\n")
         self.log_box7.see("end")
         self.log_box7.configure(state="disabled")
+
+    def choose_multiple_rois_tab7(self):
+        video_path = self.tab7_video_entry.get().strip()
+        if not video_path or not os.path.exists(video_path):
+            messagebox.showerror("Lỗi", "Vui lòng chọn Video gốc hợp lệ trước!")
+            return
+
+        import cv2
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            messagebox.showerror("Lỗi", "Không thể mở video!")
+            return
+
+        cap.set(cv2.CAP_PROP_POS_MSEC, 5000)
+        ret, frame = cap.read()
+        cap.release()
+
+        if not ret:
+            messagebox.showerror("Lỗi", "Không thể đọc frame từ video!")
+            return
+
+        messagebox.showinfo(
+            "Hướng dẫn khoanh vùng",
+            "1. Kéo chuột để khoanh vùng chữ/logo.\n"
+            "2. Bấm ENTER hoặc SPACE để lưu vùng vừa khoanh (bạn có thể khoanh tiếp vùng thứ 2, thứ 3...).\n"
+            "3. Khi khoanh xong tất cả, bấm phím ESC để xác nhận và thoát.\n"
+            "4. Bấm 'c' để xóa vùng đang khoanh dở nếu vẽ sai."
+        )
+
+        win_name = "Khoanh nhieu vung (Nhan ESC de thoat)"
+        cv2.namedWindow(win_name, cv2.WINDOW_NORMAL)
+        
+        # Thay đổi kích thước cửa sổ nếu video quá to
+        h, w = frame.shape[:2]
+        scale = min(1280/w, 720/h)
+        if scale < 1:
+            cv2.resizeWindow(win_name, int(w*scale), int(h*scale))
+
+        disp = frame.copy()
+        cv2.putText(disp, "Keo chuot de khoanh vung.", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+        cv2.putText(disp, "An ENTER hoac SPACE de LUU vung.", (20, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+        cv2.putText(disp, "An ESC de KET THUC.", (20, 130), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
+        cv2.putText(disp, "An 'c' de HUY vung dang ve.", (20, 170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 165, 255), 2)
+
+        rois = cv2.selectROIs(win_name, disp, showCrosshair=True, fromCenter=False)
+        cv2.destroyWindow(win_name)
+
+        if len(rois) > 0:
+            self.tab7_rois = rois.tolist()
+            self.btn_tab7_roi.configure(text=f"🎯 Đã khoanh ({len(rois)} vùng)", fg_color="green")
+            self.lbl_tab7_roi.configure(text="Video sẽ được làm mờ trước khi Reup.")
+        else:
+            self.tab7_rois = []
+            self.btn_tab7_roi.configure(text="🎯 Khoanh vùng cần làm mờ (0)", fg_color="#8d6e63")
+            self.lbl_tab7_roi.configure(text="Tùy chọn: Làm mờ Logo, Watermark, v.v...")
 
     def start_capcut_build(self):
         """Validate inputs và khởi chạy pipeline trong thread riêng."""
@@ -2014,6 +2082,65 @@ KỊCH BẢN PHIM:
                 self.after(0, lambda p=v: self.progress_bar7.set(p))
                 self.after(0, lambda p=v: self.status_label7.configure(
                     text=f"Đang xử lý... {int(p * 100)}%"))
+
+            # --- Pre-processing: Blurring Multiple ROIs ---
+            if getattr(self, 'tab7_rois', None):
+                log(f"🎬 Đang làm mờ {len(self.tab7_rois)} vùng đã chọn bằng FFmpeg (gblur)...")
+                prog(0.1)
+                import subprocess, cv2
+                
+                cap = cv2.VideoCapture(video_path)
+                vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                cap.release()
+
+                filter_chains = []
+                splits = len(self.tab7_rois) + 1
+                filter_chains.append(f"[0:v]split={splits}[main]" + "".join([f"[ref{i}]" for i in range(len(self.tab7_rois))]))
+                
+                for i, (x, y, w, h_box) in enumerate(self.tab7_rois):
+                    x = int(max(0, min(x, vid_w - 1)))
+                    y = int(max(0, min(y, vid_h - 1)))
+                    w = int(max(2, min(w, vid_w - x)))
+                    h_box = int(max(2, min(h_box, vid_h - y)))
+                    
+                    x = x - (x % 2)
+                    y = y - (y % 2)
+                    w = w - (w % 2)
+                    h_box = h_box - (h_box % 2)
+                    w = max(2, w)
+                    h_box = max(2, h_box)
+                    
+                    # Gán lại cho an toàn ở bước overlay
+                    self.tab7_rois[i] = (x, y, w, h_box)
+                    filter_chains.append(f"[ref{i}]crop=w={w}:h={h_box}:x={x}:y={y},gblur=sigma=20,format=yuv420p[b{i}]")
+                
+                filter_chains.append("[main]format=yuv420p[mainf]")
+                last_out = "[mainf]"
+                for i, (x, y, w, h_box) in enumerate(self.tab7_rois):
+                    out_name = f"[tmp{i}]" if i < len(self.tab7_rois) - 1 else "[v]"
+                    filter_chains.append(f"{last_out}[b{i}]overlay=x={x}:y={y}{out_name}")
+                    last_out = out_name
+                    
+                filter_str = ";".join(filter_chains)
+                blurred_vid_path = video_path.rsplit('.', 1)[0] + "_blurred_reup.mp4"
+                
+                cmd = [
+                    "ffmpeg", "-y", "-i", video_path,
+                    "-filter_complex", filter_str,
+                    "-map", "[v]", "-map", "0:a?",
+                    "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+                    "-c:a", "copy",
+                    blurred_vid_path
+                ]
+                
+                proc = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True, encoding='utf-8')
+                if proc.returncode != 0:
+                    raise Exception(f"Lỗi FFmpeg khi làm mờ nhiều vùng:\n{proc.stderr[-500:]}")
+                
+                video_path = blurred_vid_path
+                log(f"✅ Đã làm mờ xong, lưu tại: {os.path.basename(blurred_vid_path)}")
+                prog(0.2)
 
             build_capcut_draft(
                 video_path     = video_path,
