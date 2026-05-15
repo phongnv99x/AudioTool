@@ -1581,15 +1581,23 @@ KỊCH BẢN PHIM:
                 w     = max(1, min(w, vid_w - x))
                 h_box = max(1, min(h_box, vid_h - y))
 
+                # Ép các tọa độ và kích thước về số chẵn để an toàn tuyệt đối với subsampling yuv420p
+                x = int(x - (x % 2))
+                y = int(y - (y % 2))
+                w = int(w - (w % 2))
+                h_box = int(h_box - (h_box % 2))
+                
+                # Đảm bảo width và height tối thiểu là 2
+                w = max(2, w)
+                h_box = max(2, h_box)
+
                 self.append_log5(f"   → Làm mờ vùng ROI: ({w}x{h_box} tại {x},{y}) trên frame {vid_w}x{vid_h}")
 
-                # Dùng -vf chain đơn giản, tương thích mọi FFmpeg version:
-                # Bước 1: boxblur vùng ROI bằng cách split/overlay với format chuẩn yuv420p
-                # Bước 2: hflip toàn frame
+                # Dùng gblur thay vì boxblur vì boxblur sẽ crash (lỗi -22) nếu h_box quá nhỏ so với radius
                 filter_str = (
                     f"[0:v]split=2[main][ref];"
                     f"[ref]crop=w={w}:h={h_box}:x={x}:y={y},"
-                    f"boxblur=luma_radius=15:luma_power=3,"
+                    f"gblur=sigma=15,"
                     f"format=yuv420p[blurred];"
                     f"[main]format=yuv420p[mainf];"
                     f"[mainf][blurred]overlay=x={x}:y={y},"
