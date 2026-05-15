@@ -568,40 +568,62 @@ Kịch bản:
             self.append_log("[1/4] Đang trích xuất MP3 để giảm tải cho AI...")
             
             import tempfile, shutil, subprocess, time, os
-            safe_ascii_name = f"gemini_upload_temp_{int(time.time())}.mp3"
-            ascii_safe_path = os.path.join(os.path.dirname(self.video_path), safe_ascii_name)
+            safe_ascii_name_mp3 = f"gemini_upload_temp_{int(time.time())}.mp3"
+            ascii_safe_path_mp3 = os.path.join(os.path.dirname(self.video_path), safe_ascii_name_mp3)
+            
+            safe_ascii_name_in = f"gemini_input_temp_{int(time.time())}.mp4"
+            ascii_safe_path_in = os.path.join(os.path.dirname(self.video_path), safe_ascii_name_in)
             
             uploaded_file = None
             try:
                 # Nếu file gốc đã là audio thì copy sang, còn nếu là video thì tách MP3
                 if self.video_path.lower().endswith(('.mp3', '.wav', '.m4a')):
                     try:
-                        os.link(self.video_path, ascii_safe_path)
+                        os.link(self.video_path, ascii_safe_path_mp3)
                     except:
-                        shutil.copy2(self.video_path, ascii_safe_path)
+                        shutil.copy2(self.video_path, ascii_safe_path_mp3)
                 else:
+                    # Dùng hardlink để FFmpeg không bị lỗi với đường dẫn tiếng Việt
+                    try:
+                        os.link(self.video_path, ascii_safe_path_in)
+                        input_path_ffmpeg = ascii_safe_path_in
+                    except:
+                        input_path_ffmpeg = self.video_path
+
                     cmd = [
-                        "ffmpeg", "-y", "-i", self.video_path,
-                        "-vn", "-acodec", "libmp3lame", "-ab", "64k",
-                        ascii_safe_path
+                        "ffmpeg", "-y", "-i", input_path_ffmpeg,
+                        "-vn", "-c:a", "libmp3lame", "-b:a", "64k",
+                        ascii_safe_path_mp3
                     ]
-                    # creationflags=subprocess.CREATE_NO_WINDOW (0x08000000)
-                    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=0x08000000)
+                    proc = subprocess.run(
+                        cmd, 
+                        stdout=subprocess.DEVNULL, 
+                        stderr=subprocess.PIPE, 
+                        creationflags=0x08000000,
+                        text=True, 
+                        encoding='utf-8', 
+                        errors='replace'
+                    )
+                    
+                    if proc.returncode != 0:
+                        err_msg = proc.stderr[-400:] if proc.stderr else "Lỗi không xác định."
+                        raise Exception(f"Lỗi khi dùng FFmpeg để tách MP3:\n{err_msg}")
                 
-                if not os.path.exists(ascii_safe_path):
-                    raise Exception("Lỗi khi dùng FFmpeg để tách MP3.")
+                if not os.path.exists(ascii_safe_path_mp3):
+                    raise Exception("Không tìm thấy file MP3 đầu ra.")
 
                 self.append_log("   -> Tách MP3 xong. Đang tải lên Gemini...")
                 self.status_label2.configure(text="Đang tải Audio lên Gemini...")
                 self.progress_bar2.set(0.1)
                 
-                uploaded_file = client.files.upload(file=ascii_safe_path)
+                uploaded_file = client.files.upload(file=ascii_safe_path_mp3)
             finally:
-                try:
-                    if os.path.exists(ascii_safe_path):
-                        os.remove(ascii_safe_path)
-                except:
-                    pass
+                for tmp_file in [ascii_safe_path_mp3, ascii_safe_path_in]:
+                    try:
+                        if os.path.exists(tmp_file):
+                            os.remove(tmp_file)
+                    except:
+                        pass
             
             if not uploaded_file:
                 raise Exception("Không thể tải file lên Gemini.")
