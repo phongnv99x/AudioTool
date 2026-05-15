@@ -562,22 +562,38 @@ Kịch bản:
             # Xóa sạch cài đặt timeout thủ công, dùng cấu hình vô cực mặc định của Google để nó tự do "suy nghĩ".
             client = genai.Client(api_key=self.gemini_api_key)
             
-            # 1. UPLOAD VIDEO
-            self.status_label2.configure(text="Đang tải Media lên Gemini (Sẽ khá lâu)...")
-            self.progress_bar2.set(0.1)
-            self.append_log("[1/4] Bắt đầu upload Media...")
+            # 1. EXTRACT MP3 AND UPLOAD
+            self.status_label2.configure(text="Đang bóc tách Âm thanh (Sẽ nhanh thôi)...")
+            self.progress_bar2.set(0.05)
+            self.append_log("[1/4] Đang trích xuất MP3 để giảm tải cho AI...")
             
-            # Khắc phục lỗi 'ascii' codec khi file có tên tiếng Việt
-            import tempfile, shutil
-            safe_ascii_name = f"gemini_upload_temp_{int(time.time())}.mp4"
+            import tempfile, shutil, subprocess, time, os
+            safe_ascii_name = f"gemini_upload_temp_{int(time.time())}.mp3"
             ascii_safe_path = os.path.join(os.path.dirname(self.video_path), safe_ascii_name)
             
             uploaded_file = None
             try:
-                try:
-                    os.link(self.video_path, ascii_safe_path)
-                except:
-                    shutil.copy2(self.video_path, ascii_safe_path)
+                # Nếu file gốc đã là audio thì copy sang, còn nếu là video thì tách MP3
+                if self.video_path.lower().endswith(('.mp3', '.wav', '.m4a')):
+                    try:
+                        os.link(self.video_path, ascii_safe_path)
+                    except:
+                        shutil.copy2(self.video_path, ascii_safe_path)
+                else:
+                    cmd = [
+                        "ffmpeg", "-y", "-i", self.video_path,
+                        "-vn", "-acodec", "libmp3lame", "-ab", "64k",
+                        ascii_safe_path
+                    ]
+                    # creationflags=subprocess.CREATE_NO_WINDOW (0x08000000)
+                    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=0x08000000)
+                
+                if not os.path.exists(ascii_safe_path):
+                    raise Exception("Lỗi khi dùng FFmpeg để tách MP3.")
+
+                self.append_log("   -> Tách MP3 xong. Đang tải lên Gemini...")
+                self.status_label2.configure(text="Đang tải Audio lên Gemini...")
+                self.progress_bar2.set(0.1)
                 
                 uploaded_file = client.files.upload(file=ascii_safe_path)
             finally:
