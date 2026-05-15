@@ -972,14 +972,20 @@ Kịch bản thoại (từ đầu đến cuối):
             self.status_label3.configure(text="Đang gọi AI (gemini-2.5-flash)...")
             
             prompt = f"""
-Bạn là một chuyên gia YouTube SEO và Đạo diễn Nghệ thuật. Dựa vào nội dung kịch bản dưới đây và hình ảnh thumbnail mẫu (nếu có), hãy tạo:
+Bạn là một chuyên gia YouTube SEO và Đạo diễn Nghệ thuật chuyên về mảng Hoạt hình 3D Trung Quốc (Đấu La Đại Lục, Đấu Phá Thương Khung, Tu Tiên, Xuyên Không).
+Dựa vào nội dung kịch bản dưới đây và hình ảnh thumbnail mẫu (nếu có), hãy tạo:
 1. 3 Tiêu đề video (giật tít, khơi gợi sự tò mò để tăng CTR cao nhất).
 2. 3 Đoạn prompt bằng tiếng Anh (chi tiết, miêu tả ánh sáng, góc máy, chất lượng 8k) để tôi dùng làm lệnh vẽ AI Thumbnail. 
-BẮT BUỘC THỰC HIỆN CÁC YÊU CẦU SAU DÀNH CHO PROMPT ẢNH:
-- Khắc phục nhược điểm của ảnh mẫu: Hãy phân tích nhược điểm của ảnh mẫu (nếu có) và tạo prompt khắc phục để làm nó nổi bật hơn.
-- Bám sát phong cách Nghệ thuật Hoạt hình 3D (Donghua): Vì đây là phim hoạt hình 3D Trung Quốc, BẮT BUỘC phải thêm các từ khóa "3D Chinese animation style, Donghua, Unreal Engine 5 render, highly detailed 3D masterpiece" vào prompt để AI không bị nhầm lẫn vẽ ra người thật.
-- Bám sát phong cách Trang phục CỦA NHÂN VẬT NỮ: Đừng vẽ phụ nữ mặc kín đáo như áo bà ba hay áo dài nếu ảnh gốc không như vậy. BẮT BUỘC phải nhồi các từ khóa miêu tả NỮ GIỚI cực mạnh vào prompt tiếng Anh: "beautiful and extremely seductive women, deep plunging neckline, bare shoulders, high slit dress, voluptuous, revealing outfit, beautiful cleavage" để ép AI vẽ nhân vật nữ sát với độ sexy của ảnh gốc nhất có thể. Đảm bảo các từ khóa sexy này CHỈ áp dụng cho nhân vật nữ. Nhân vật nam (nếu có) phải mạnh mẽ, nam tính (muscular, masculine, handsome).
-- Chèn chữ Tiếng Việt 3D: Bắt buộc ở cuối mỗi đoạn prompt tiếng Anh, hãy thêm lệnh yêu cầu AI vẽ chữ Tiếng Việt chuẩn. Lấy nội dung tóm tắt cực gắt. (Ví dụ: At the bottom, large 3D stylized Vietnamese text with a thick black outline and yellow glow: "NGHỊCH THIÊN CẢI MỆNH" and "THỨC TỈNH VÕ THẦN". Cinematic 16:9, vibrant colors, intense lighting.)
+BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU (Đa dạng hóa bối cảnh, màu sắc và nhân vật) ĐỂ TẠO SỰ ĐA DẠNG:
+- Concept 1 (Epic/Hệ Thống/Xuyên Không): Bối cảnh tăm tối, xiềng xích ma thuật, màn hình UI hệ thống lơ lửng, hoặc nhân vật nam chính bùng nổ sức mạnh (glowing aura, lightning).
+- Concept 2 (Mỹ Nữ/Quyến Rũ/Kiếm Sư): Focus vào nhân vật nữ (beautiful and seductive, deep plunging neckline, high slit dress), cầm kiếm ma thuật, bối cảnh tiên cảnh (fairy tale, glowing lotuses, particles).
+- Concept 3 (Đại Lão/Bí Ẩn/Kỳ Ngộ): Focus vào một lão giả thần bí, mắt phát sáng, thần thú (rồng, cọp), hoặc khung cảnh cổ đại tráng lệ (ancient ruins, giant artifacts).
+
+YÊU CẦU CHUNG CHO CẢ 3 PROMPT:
+- Chất lượng & Phong cách: "3D Chinese animation style, Donghua, Unreal Engine 5 render, highly detailed 3D masterpiece, cinematic lighting, extreme contrast".
+- Chữ Tiếng Việt 3D YouTube Style: Ở mỗi prompt, hãy chỉ định 1 câu text Tiếng Việt thật ngắn (2-4 chữ, ví dụ: "TU TIÊN", "XUYÊN KHÔNG", "HỆ THỐNG") đặt ở góc trên bên trái (Top Left) và 1 dòng title chính ở dưới cùng (Bottom). YÊU CẦU MÀU SẮC CHỮ PHẢI KHÁC NHAU GIỮA CÁC PROMPT (Ví dụ: Prompt 1 dùng chữ Vàng viền Đen tỏa sáng đỏ, Prompt 2 dùng chữ Tím viền Trắng tỏa sáng Neon Cyan, Prompt 3 dùng chữ Xanh lá viền Đen).
+- Ví dụ cách chèn text: "Top left corner has text 'PHẦN 1' in purple badge. Bottom text: 'THỨC TỈNH VÕ THẦN' in large 3D bold font, yellow gradient with thick black stroke and fiery glow."
+
 3. 1 Đoạn mô tả video (Description) lôi cuốn, bao gồm các #hashtag thịnh hành.
 4. 1 Chuỗi các thẻ từ khóa (Tags) cách nhau bằng dấu phẩy (không có #, hoàn toàn bằng tiếng Việt có dấu, bám sát nội dung).
 
