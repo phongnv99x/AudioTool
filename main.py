@@ -1800,6 +1800,14 @@ KỊCH BẢN PHIM:
 
             self.after(0, lambda: self.progress_bar6.set(0.2))
 
+            # Chuyển đổi tên sang Tieng_viet_khong_dau, bỏ ký tự đặc biệt
+            import unicodedata, re
+            vi_title = unicodedata.normalize('NFKD', vi_title).encode('ASCII', 'ignore').decode('utf-8')
+            vi_title = re.sub(r'[^\w\s-]', '', vi_title)
+            vi_title = re.sub(r'[-\s]+', '_', vi_title).strip('_')
+            if not vi_title:
+                vi_title = f"video_tai_ve_{int(time.time())}"
+
             # Tải video với max băng thông (16 luồng)
             self.append_log6(f"[3/3] Bắt đầu tải video (16 luồng song song)...")
             self.after(0, lambda: self.status_label6.configure(text="Đang tải video..."))
