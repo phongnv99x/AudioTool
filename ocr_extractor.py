@@ -40,33 +40,87 @@ def _add_nvidia_dll_dirs():
     except Exception:
         return []
 
-# Gọi ngay khi module được import, trước mọi thứ khác
-_add_nvidia_dll_dirs()
-
-
-def similar(a, b):
-    return SequenceMatcher(None, a, b).ratio()
-
 
 def _init_ocr_gpu():
-    """Khởi tạo RapidOCR với CUDA GPU, fallback về CPU nếu không có."""
+    """Khởi tạo RapidOCR trên GPU (CUDA hoặc DirectML).
+
+    - Gọi _add_nvidia_dll_dirs() trước khi import onnxruntime để DLL được tìm thấy.
+    - Config YAML được patch trực tiếp để tránh bug UpdateParameters.
+    - Fallback: DirectML (Windows) -> CPU.
+    """
+    # QUAN TRỌNG: đăng ký DLL trước khi import onnxruntime
+    _add_nvidia_dll_dirs()
+
     from rapidocr_onnxruntime import RapidOCR
-    try:
-        import onnxruntime as ort
-        available_providers = ort.get_available_providers()
-        if 'CUDAExecutionProvider' in available_providers:
-            ocr = RapidOCR(
-                det_use_cuda=True,
-                cls_use_cuda=True,
-                rec_use_cuda=True,
+    import onnxruntime as ort
+    import rapidocr_onnxruntime as _rpkg
+    import yaml, tempfile
+    from pathlib import Path
+
+    available = ort.get_available_providers()
+    has_cuda = 'CUDAExecutionProvider' in available
+    has_dml  = 'DmlExecutionProvider' in available
+
+    # Đọc config gốc
+    default_cfg_path = Path(_rpkg.__file__).parent / "config.yaml"
+    with open(default_cfg_path, encoding="utf-8") as f:
+        cfg = yaml.safe_load(f)
+
+    # Thử CUDA trước
+    if has_cuda:
+        try:
+            cuda_cfg = yaml.safe_load(open(default_cfg_path, encoding='utf-8').read())
+            for sec in ('Det', 'Cls', 'Rec'):
+                if sec in cuda_cfg:
+                    cuda_cfg[sec]['use_cuda'] = True
+
+            tmp = tempfile.NamedTemporaryFile(
+                mode='w', suffix='.yaml', delete=False, encoding='utf-8'
             )
-            return ocr, "GPU (CUDA)"
-        else:
-            ocr = RapidOCR()
-            return ocr, "CPU (CUDA không khả dụng)"
-    except Exception:
-        ocr = RapidOCR()
-        return ocr, "CPU (fallback)"
+            yaml.dump(cuda_cfg, tmp, allow_unicode=True)
+            tmp.flush(); tmp.close()
+
+            ocr = RapidOCR(config_path=tmp.name)
+            try: os.unlink(tmp.name)
+            except: pass
+
+            # Warm-up và kiểm tra provider thực tế
+            import numpy as np
+            ocr(np.zeros((64, 128, 3), dtype=np.uint8))
+            provider = ocr.text_det.infer.session.get_providers()[0]
+            if provider == 'CUDAExecutionProvider':
+                return ocr, 'GPU (CUDA ✅)'
+        except Exception as e:
+            pass  # Fallback xuống DirectML hoặc CPU
+
+    # Thử DirectML (Windows 10+)
+    if has_dml:
+        try:
+            dml_cfg = yaml.safe_load(open(default_cfg_path, encoding='utf-8').read())
+            for sec in ('Det', 'Cls', 'Rec'):
+                if sec in dml_cfg:
+                    dml_cfg[sec]['use_dml'] = True
+
+            tmp = tempfile.NamedTemporaryFile(
+                mode='w', suffix='.yaml', delete=False, encoding='utf-8'
+            )
+            yaml.dump(dml_cfg, tmp, allow_unicode=True)
+            tmp.flush(); tmp.close()
+
+            ocr = RapidOCR(config_path=tmp.name)
+            try: os.unlink(tmp.name)
+            except: pass
+
+            import numpy as np
+            ocr(np.zeros((64, 128, 3), dtype=np.uint8))
+            provider = ocr.text_det.infer.session.get_providers()[0]
+            if provider == 'DmlExecutionProvider':
+                return ocr, 'GPU (DirectML ✅)'
+        except Exception:
+            pass
+
+    # Fallback CPU
+    return RapidOCR(), 'CPU'
 
 
 def _get_filtered_text(result):
