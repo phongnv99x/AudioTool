@@ -330,6 +330,8 @@ class App(ctk.CTk):
                     "role": "dịch giả phim truyền hình chuyên nghiệp",
                     "target": "Tiếng Việt",
                     "rules": (
+                        "- [QUAN TRỌNG NHẤT] Mỗi phần tử trong mảng đầu vào là MỘT câu phụ đề riêng biệt. Bắt buộc trả về ĐÚNG số lượng câu đầu ra bằng số câu đầu vào, theo đúng thứ tự.\n"
+                        "- [NGHIÊM CẤM BỊA ĐẶT] Dịch ĐÚNG VÀ CHỈ những gì câu gốc nói. Nếu câu gốc chỉ có 1-2 từ (ví dụ: '嗯...', '好'), thì câu dịch cũng phải ngắn tương đương (ví dụ: 'Ừm...', 'Tốt.'). TUYỆT ĐỐI không được thêm nội dung, bịa câu, hay dựa vào ngữ cảnh xung quanh để tự ý mở rộng.\n"
                         "- Giữ nguyên ngữ cảnh phim cổ trang, kiếm hiệp, ngôn tình.\n"
                         "- Chú ý giới tính: Khi thấy chữ 奴才 / 奴婢 / 我, hãy tự phân tích ngữ cảnh để dịch ĐỒNG NHẤT là \"nô tài\" (nếu là nam/thái giám) hoặc \"nô tỳ\" (nếu là nữ/nha hoàn). TUYỆT ĐỐI không dịch lộn xộn.\n"
                         "- Sử dụng chính xác các từ xưng hô cổ trang như: công tử, tại hạ, huynh đài, muội muội...\n"
@@ -346,6 +348,8 @@ class App(ctk.CTk):
                     "role": "professional anime and drama subtitle translator",
                     "target": "Japanese (日本語)",
                     "rules": (
+                        "- [MOST IMPORTANT] Each element in the input array is ONE separate subtitle line. You MUST return EXACTLY the same number of translated lines as input lines, in the same order.\n"
+                        "- [STRICTLY FORBIDDEN] Translate ONLY and EXACTLY what the source says. If the source is just 1-2 words (e.g., '嗯...', '好'), the translation must also be short (e.g., 'うん...', 'よし.'). NEVER add content, fabricate sentences, or expand based on surrounding context.\n"
                         "- This is a Chinese Xianxia/Wuxia/cultivation fantasy animation (Donghua). Translate into natural, fluent Japanese suitable for anime subtitles.\n"
                         "- Use appropriate speech levels: use だ/である style for warrior/cultivator characters, and です/ます for formal/polite scenes.\n"
                         "- Preserve character honorifics and titles (e.g., 師父 → 師父/師匠, 殿下 → 殿下, 道友 → 道友).\n"
@@ -361,6 +365,8 @@ class App(ctk.CTk):
                     "role": "전문 드라마 자막 번역가",
                     "target": "Korean (한국어)",
                     "rules": (
+                        "- [가장 중요] 입력 배열의 각 요소는 하나의 독립된 자막 줄입니다. 반드시 입력과 동일한 수의 번역 줄을 동일한 순서로 반환해야 합니다.\n"
+                        "- [절대 금지] 원문이 말하는 것만 정확히 번역하세요. 원문이 1-2 단어에 불과한 경우 (예: '嗯...', '好'), 번역도 짧아야 합니다 (예: '음...', '좋아.'). 절대로 내용을 추가하거나, 문장을 꾸며내거나, 주변 문맥을 기반으로 확장해서는 안 됩니다.\n"
                         "- 이것은 중국 선협/무협/수련 판타지 애니메이션(동화)입니다. 한국 드라마/애니 자막 스타일로 자연스럽게 번역하세요.\n"
                         "- 캐릭터의 말투와 신분에 맞는 어체 사용: 무사/수련자는 ~다/~이다 체, 격식 있는 장면은 ~습니다/~요 체.\n"
                         "- 존칭과 직함 유지 (예: 師父 → 사부님, 殿下 → 전하, 道友 → 도우).\n"
@@ -384,7 +390,10 @@ class App(ctk.CTk):
                     f"You are a {lp['role']}. Your task is to translate the following subtitle lines "
                     f"from Chinese into {lp['target']}.\n"
                     f"IMPORTANT REQUIREMENTS:\n{lp['rules']}\n\n"
-                    f"The input is a JSON array of sentences to translate:\n"
+                    f"The input is a JSON array of {len(batch)} sentences to translate. "
+                    f"You MUST return a JSON array of EXACTLY {len(batch)} translated strings. "
+                    f"One input = one output. Do not merge, split, skip, or add any lines.\n"
+                    f"Input array:\n"
                     f"{json.dumps(batch, ensure_ascii=False)}\n"
                 )
                 if uploaded_file:
