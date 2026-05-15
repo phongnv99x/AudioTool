@@ -5,6 +5,9 @@ import re
 import numpy as np
 from difflib import SequenceMatcher
 
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
 
 def _add_nvidia_dll_dirs():
     """
@@ -66,80 +69,11 @@ def _init_ocr_gpu():
         return ocr, "CPU (fallback)"
 
 
-def _calibrate_char_height(video_path, ocr, roi_bbox, fps, log_callback=None):
-    """
-    Quét nhanh 60 giây đầu video để tìm chiều cao median của ký tự phụ đề.
-
-    Sub cứng có kích thước font nhất quán → dùng median làm tham chiếu.
-    Text UI (tên skill, thông báo hệ thống) thường có font khác kích thước.
-
-    Trả về (h_min, h_max) hoặc (None, None) nếu không đủ mẫu.
-    """
-    import cv2
-
-    cap = cv2.VideoCapture(video_path)
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    process_interval = max(int(fps / 2), 1)
-    sample_frames = min(int(60 * fps), total_frames)  # Chỉ quét 60s đầu
-
-    heights = []
-    frame_idx = 0
-
-    while cap.isOpened() and frame_idx < sample_frames:
-        ret = cap.grab()
-        if not ret:
-            break
-
-        if frame_idx % process_interval == 0:
-            ret, frame = cap.retrieve()
-            if not ret:
-                break
-
-            if roi_bbox:
-                x, y, w, h_box = roi_bbox
-                crop_img = frame[y:y+h_box, x:x+w]
-            else:
-                h, w = frame.shape[:2]
-                crop_y1 = int(h * 0.8) if w >= h else int(h * 0.5)
-                crop_img = frame[crop_y1:, :]
-
-            result, _ = ocr(crop_img)
-            if result:
-                for item in result:
-                    bbox, text, conf = item
-                    if conf > 0.6 and bool(re.search(r'[\u4e00-\u9fff]', text)):
-                        pts = np.array(bbox, dtype=np.float32)
-                        h_bbox = float(pts[:, 1].max() - pts[:, 1].min())
-                        if h_bbox > 4:
-                            heights.append(h_bbox)
-
-        frame_idx += 1
-
-    cap.release()
-
-    if len(heights) < 5:
-        if log_callback:
-            log_callback("   ⚠️ Không đủ mẫu để hiệu chỉnh bộ lọc. Quét toàn bộ không lọc font.")
-        return None, None
-
-    median_h = float(np.median(heights))
-    h_min = median_h * 0.60  # Cho phép ±40% dao động
-    h_max = median_h * 1.40
-
-    if log_callback:
-        log_callback(
-            f"   ✅ Font phụ đề: ~{median_h:.1f}px → chấp nhận [{h_min:.0f}–{h_max:.0f}]px "
-            f"(từ {len(heights)} mẫu chữ Hán)"
-        )
-    return h_min, h_max
-
-
-def _get_filtered_text(result, ref_h_min, ref_h_max):
+def _get_filtered_text(result):
     """
     Lọc kết quả OCR theo:
     1. Confidence > 0.6
-    2. Chiều cao bbox trong dải tham chiếu (nếu đã calibrate)
-    3. Phải chứa ký tự Hán
+    2. Phải chứa ký tự Hán
     """
     if not result:
         return ""
@@ -149,14 +83,6 @@ def _get_filtered_text(result, ref_h_min, ref_h_max):
         bbox, text, conf = item
         if conf <= 0.6:
             continue
-
-        # Lọc theo kích thước font
-        if ref_h_min is not None:
-            pts = np.array(bbox, dtype=np.float32)
-            h_bbox = float(pts[:, 1].max() - pts[:, 1].min())
-            if not (ref_h_min <= h_bbox <= ref_h_max):
-                continue  # Font khác → text UI, tiêu đề, tên skill...
-
         texts.append(text)
 
     if not texts:
@@ -208,25 +134,15 @@ def extract_subtitles_from_video(video_path, output_srt, log_callback=None,
         f"Quét mỗi {process_interval} frame (~2fps)"
     )
 
-    # --- BƯỚC 0: Auto-calibrate chiều cao ký tự ---
-    if log_callback: log_callback("\n🔍 Hiệu chỉnh bộ lọc font (quét 60s đầu)...")
-    ref_h_min, ref_h_max = _calibrate_char_height(
-        video_path, ocr, roi_bbox, fps, log_callback
-    )
-
     # --- Quét video ---
     cap            = cv2.VideoCapture(video_path)
-    subs           = []
-    current_text   = ""
-    current_start  = 0
-    last_seen      = 0
-    MIN_DURATION   = 0.3  # Chỉ lọc flash < 0.3s; câu ngắn như "好" vẫn được giữ
-    frame_idx      = 0
-    processed      = 0
+    
+    # Pass 1: Thu thập toàn bộ text
+    raw_detections = []  # Lưu [{ 'text': ..., 'start': t, 'last_seen': t, 'y_bottom': ..., 'h_bbox': ... }]
+    active_texts   = []  # Theo dõi text qua các frame liên tiếp
 
-    def _save(text, start, end):
-        if end - start >= MIN_DURATION:
-            subs.append({'text': text, 'start': start, 'end': end + 0.3})
+    frame_idx = 0
+    processed = 0
 
     def _log_new(t_sec, text):
         if text_callback:
@@ -256,28 +172,61 @@ def extract_subtitles_from_video(video_path, output_srt, log_callback=None,
                 crop = frame[y0:, :]
 
             result, _ = ocr(crop)
-            text = _get_filtered_text(result, ref_h_min, ref_h_max)
+            current_frame_items = []
+            
+            if result:
+                for item in result:
+                    bbox, text, conf = item
+                    if conf <= 0.6: continue
+                    pts = np.array(bbox, dtype=np.float32)
+                    y_bottom = float(pts[:, 1].max())
+                    h_bbox = float(pts[:, 1].max() - pts[:, 1].min())
+                    
+                    # Lọc sơ bộ: phải chứa chữ Hán hoặc dài >= 4
+                    detected = re.sub(r'[a-zA-Z]', '', text).strip()
+                    has_chinese = bool(re.search(r'[\u4e00-\u9fff]', detected))
+                    if not has_chinese and len(detected) < 4:
+                        continue
+                    
+                    current_frame_items.append({
+                        'text': text,
+                        'y_bottom': y_bottom,
+                        'h_bbox': h_bbox
+                    })
 
-            if text:
-                if not current_text:
-                    current_text  = text
-                    current_start = t
-                    last_seen     = t
-                    _log_new(t, text)
-                elif similar(current_text, text) > 0.7:
-                    last_seen = t
-                    if len(text) > len(current_text):
-                        current_text = text
+            # Ghép với active_texts
+            for curr in current_frame_items:
+                matched = False
+                for active in active_texts:
+                    if similar(active['text'], curr['text']) > 0.6 or curr['text'] in active['text'] or active['text'] in curr['text']:
+                        # Cập nhật active
+                        active['last_seen'] = t
+                        if len(curr['text']) > len(active['text']):
+                            active['text'] = curr['text']
+                        # Cập nhật baseline trung bình mượt
+                        active['y_bottom'] = (active['y_bottom'] + curr['y_bottom']) / 2.0
+                        active['h_bbox'] = (active['h_bbox'] + curr['h_bbox']) / 2.0
+                        matched = True
+                        break
+                if not matched:
+                    new_item = {
+                        'text': curr['text'],
+                        'start': t,
+                        'last_seen': t,
+                        'y_bottom': curr['y_bottom'],
+                        'h_bbox': curr['h_bbox']
+                    }
+                    active_texts.append(new_item)
+                    _log_new(t, curr['text'])
+
+            # Xóa các active_texts đã quá hạn (không xuất hiện trong 1s)
+            survivors = []
+            for active in active_texts:
+                if t - active['last_seen'] > 1.0:
+                    raw_detections.append(active)
                 else:
-                    _save(current_text, current_start, last_seen)
-                    current_text  = text
-                    current_start = t
-                    last_seen     = t
-                    _log_new(t, text)
-            else:
-                if current_text:
-                    _save(current_text, current_start, last_seen)
-                    current_text = ""
+                    survivors.append(active)
+            active_texts = survivors
 
             processed += 1
             if progress_callback and frame_idx % (process_interval * 30) == 0:
@@ -286,15 +235,50 @@ def extract_subtitles_from_video(video_path, output_srt, log_callback=None,
                 pct = frame_idx / total_frames * 100
                 log_callback(
                     f"   [{pct:.1f}%] Đã quét {processed} frame | "
-                    f"Tìm được {len(subs)} dòng phụ đề..."
+                    f"Phát hiện {len(raw_detections) + len(active_texts)} chuỗi text..."
                 )
 
         frame_idx += 1
 
     cap.release()
 
-    if current_text:
-        _save(current_text, current_start, last_seen)
+    raw_detections.extend(active_texts)
+
+    subs = []
+    if raw_detections:
+        # --- Pass 2: Phân tích Global Baseline ---
+        from collections import defaultdict
+        y_bins = defaultdict(float)  # bin -> total duration
+        
+        for item in raw_detections:
+            duration = item['last_seen'] - item['start'] + 0.3
+            item['duration'] = duration
+            # Nhóm các Y_bottom gần nhau (làm tròn 5px)
+            y_bin = round(item['y_bottom'] / 5.0) * 5
+            y_bins[y_bin] += duration
+
+        # Tọa độ Y phổ biến nhất chính là Baseline của phụ đề
+        best_y_bin = max(y_bins.items(), key=lambda x: x[1])[0]
+
+        if log_callback:
+            log_callback(f"\n🔍 [Global Baseline] Phát hiện chân chữ phụ đề tại Y ≈ {best_y_bin}px")
+            log_callback(f"   => Tự động vứt bỏ các text rác (hiển thị hệ thống) lệch khỏi tọa độ này.")
+
+        # Lọc lại toàn bộ detections
+        for item in raw_detections:
+            y_diff = abs(item['y_bottom'] - best_y_bin)
+            
+            # Chấp nhận sai số Y <= 15px
+            if y_diff <= 15:
+                subs.append({
+                    'text': item['text'],
+                    'start': item['start'],
+                    'end': item['last_seen'] + 0.3
+                })
+
+        # Sắp xếp theo thời gian
+        subs.sort(key=lambda x: x['start'])
+
 
     # --- Lưu SRT ---
     import pysrt
