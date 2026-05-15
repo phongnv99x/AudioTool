@@ -1591,7 +1591,31 @@ KỊCH BẢN PHIM:
             self.append_log5(f"   → Kích thước video sau giảm tốc: {vid_w}x{vid_h}")
 
             self.progress_bar5.set(0.3)
-            self.append_log5("   ✅ Đã tạo xong video 0.8x. Sẵn sàng quét OCR.\n")
+            self.append_log5("   ✅ Đã tạo xong video 0.8x.")
+            
+            # BƯỚC 1.5: TRÍCH XUẤT AUDIO ĐÃ GIẢM TỐC (0.8x)
+            self.append_log5("   → Đang trích xuất Audio đã giảm tốc (0.8x) sang MP3...")
+            slow_mp3 = os.path.join(out_dir, f"{base_name}_slow_audio.mp3")
+            cmd_audio = [
+                "ffmpeg", "-y", "-i", self.video_path5,
+                "-vn", "-filter_complex", "[0:a]atempo=0.8[a]",
+                "-map", "[a]", "-c:a", "libmp3lame", "-b:a", "128k",
+                slow_mp3
+            ]
+            proc_a = subprocess.run(
+                cmd_audio, 
+                stdout=subprocess.DEVNULL, 
+                stderr=subprocess.PIPE, 
+                creationflags=0x08000000,
+                text=True, 
+                encoding='utf-8', 
+                errors='replace'
+            )
+            
+            if proc_a.returncode == 0 and os.path.exists(slow_mp3):
+                self.append_log5(f"   ✅ Đã lưu file MP3 chậm 0.8x tại: {os.path.basename(slow_mp3)}\n")
+            else:
+                self.append_log5("   → [Cảnh báo] Lỗi tách MP3 hoặc Video không có âm thanh. Bỏ qua bước này.\n")
 
             # ============================================================
             # BƯỚC 2: OCR TỪ VIDEO ĐÃ GIẢM TỐC (timing khớp chính xác)
