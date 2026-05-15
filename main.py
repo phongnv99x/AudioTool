@@ -1067,17 +1067,8 @@ Kịch bản thoại:
             
             data = json.loads(response.text)
             
-            # Format output
-            out_text = "====== TIÊU ĐỀ VIDEO (TĂNG CTR) ======\n"
-            for i, t in enumerate(data.get("titles", [])):
-                out_text += f"{i+1}. {t}\n"
-                
-            out_text += "\n====== PROMPT TẠO THUMBNAIL (ENGLISH) ======\n"
-            for i, t in enumerate(data.get("thumbnail_prompts", [])):
-                out_text += f"{i+1}. {t}\n\n"
-                
-            out_text += "====== MÔ TẢ VIDEO (DESCRIPTION) ======\n"
-            out_text += f"{data.get('description', '')}\n\n"
+            # Format output directly as pretty JSON
+            out_text = json.dumps(data, indent=2, ensure_ascii=False) + "\n\n"
             
             if getattr(self, 'music_attributions', None) and len(self.music_attributions) > 0:
                 out_text += "====== THÔNG TIN BẢN QUYỀN ÂM NHẠC (BẮT BUỘC COPY VÀO MÔ TẢ) ======\n"
@@ -1086,9 +1077,6 @@ Kịch bản thoại:
                     out_text += f"- {attr['title']} by {attr['uploader']}\n  Link: {attr['url']}\n"
                 out_text += "\nLicensed under Creative Commons: By Attribution 3.0 License\n"
                 out_text += "http://creativecommons.org/licenses/by/3.0/\n\n"
-            
-            out_text += "====== TỪ KHÓA (TAGS) ======\n"
-            out_text += f"{data.get('tags', '')}\n"
             
             self.seo_result_box.insert("1.0", out_text)
             self.status_label3.configure(text="HOÀN TẤT!")
