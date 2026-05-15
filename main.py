@@ -1438,7 +1438,7 @@ KỊCH BẢN PHIM:
                 cmd_slow = [
                     "ffmpeg", "-y", "-i", self.video_path5,
                     "-filter_complex", "[0:v]setpts=1.25*PTS[v]",
-                    "-map", "[v]", "-an",
+                    "-map", "[v]", "-vsync", "vfr", "-an",
                     "-c:v", "h264_nvenc", "-preset", "p6", "-cq", "28",
                     temp_slow_video
                 ]
@@ -1447,7 +1447,7 @@ KỊCH BẢN PHIM:
                 cmd_slow = [
                     "ffmpeg", "-y", "-i", self.video_path5,
                     "-filter_complex", "[0:v]setpts=1.25*PTS[v]",
-                    "-map", "[v]", "-an",
+                    "-map", "[v]", "-vsync", "vfr", "-an",
                     "-c:v", "libx264", "-preset", "fast",
                     temp_slow_video
                 ]
@@ -1460,7 +1460,7 @@ KỊCH BẢN PHIM:
                 cmd_slow_cpu = [
                     "ffmpeg", "-y", "-i", self.video_path5,
                     "-filter_complex", "[0:v]setpts=1.25*PTS[v]",
-                    "-map", "[v]", "-an",
+                    "-map", "[v]", "-vsync", "vfr", "-an",
                     "-c:v", "libx264", "-preset", "fast",
                     temp_slow_video
                 ]
