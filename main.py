@@ -607,16 +607,18 @@ Kịch bản:
                     
                     if proc.returncode != 0:
                         err_msg = proc.stderr[-400:] if proc.stderr else "Lỗi không xác định."
-                        raise Exception(f"Lỗi khi dùng FFmpeg để tách MP3:\n{err_msg}")
-                
-                if not os.path.exists(ascii_safe_path_mp3):
-                    raise Exception("Không tìm thấy file MP3 đầu ra.")
+                        if "does not contain any stream" in err_msg or "Output file is empty" in err_msg:
+                            self.append_log("   -> [CẢNH BÁO] Video không có âm thanh. Sẽ chỉ phân tích kịch bản chữ.")
+                        else:
+                            raise Exception(f"Lỗi khi dùng FFmpeg để tách MP3:\n{err_msg}")
+                    else:
+                        if not os.path.exists(ascii_safe_path_mp3):
+                            raise Exception("Không tìm thấy file MP3 đầu ra.")
 
-                self.append_log("   -> Tách MP3 xong. Đang tải lên Gemini...")
-                self.status_label2.configure(text="Đang tải Audio lên Gemini...")
-                self.progress_bar2.set(0.1)
-                
-                uploaded_file = client.files.upload(file=ascii_safe_path_mp3)
+                        self.append_log("   -> Tách MP3 xong. Đang tải lên Gemini...")
+                        self.status_label2.configure(text="Đang tải Audio lên Gemini...")
+                        self.progress_bar2.set(0.1)
+                        uploaded_file = client.files.upload(file=ascii_safe_path_mp3)
             finally:
                 for tmp_file in [ascii_safe_path_mp3, ascii_safe_path_in]:
                     try:
@@ -625,21 +627,22 @@ Kịch bản:
                     except:
                         pass
             
-            if not uploaded_file:
-                raise Exception("Không thể tải file lên Gemini.")
+            if uploaded_file:
+                self.append_log(f"Đã tải lên thành công. Tên File API: {uploaded_file.name}")
+                self.status_label2.configure(text="Đang chờ Google xử lý video...")
                 
-            self.append_log(f"Đã tải lên thành công. Tên File API: {uploaded_file.name}")
-            self.status_label2.configure(text="Đang chờ Google xử lý video...")
-            
-            # Poll state
-            while uploaded_file.state.name == "PROCESSING":
-                time.sleep(5)
-                uploaded_file = client.files.get(name=uploaded_file.name)
-            
-            if uploaded_file.state.name == "FAILED":
-                raise Exception("Lỗi: Google không thể xử lý video này.")
+                # Poll state
+                while uploaded_file.state.name == "PROCESSING":
+                    time.sleep(5)
+                    uploaded_file = client.files.get(name=uploaded_file.name)
                 
-            self.append_log("[2/4] Video đã xử lý xong. Chuẩn bị phân tích kịch bản...")
+                if uploaded_file.state.name == "FAILED":
+                    raise Exception("Lỗi: Google không thể xử lý video này.")
+                    
+                self.append_log("[2/4] Audio đã xử lý xong. Chuẩn bị phân tích kịch bản...")
+            else:
+                self.append_log("[2/4] Bỏ qua bước upload Media (Video không có tiếng). Chuẩn bị phân tích kịch bản...")
+                
             self.progress_bar2.set(0.4)
             
             # 2. GENERATE SCRIPT SUMMARY
@@ -649,9 +652,6 @@ Kịch bản:
             for sub in subs_to_use:
                 t_start = sub.start.to_time().strftime('%H:%M:%S')
                 script_summary += f"[{t_start}] {sub.text.replace(chr(10), ' ')}\n"
-
-            # KHÔNG truncate script_summary vì Gemini 2.5 Flash hỗ trợ tới 1-2 triệu token.
-            # Điều này đảm bảo AI đọc đến tận cùng phút thứ 60 của phim.
 
             # Lấy danh sách thư mục cảm xúc (mood folders) từ Kho_nhac
             import glob, os
@@ -671,8 +671,9 @@ Kịch bản:
             self.status_label2.configure(text="Đang dùng AI phân tích cảm xúc (Dòng Flash siêu tốc)...")
             self.append_log(f"[3/4] AI đang phân tích toàn bộ file Media... (Có thể mất 2-3 phút, vui lòng kiên nhẫn)")
             
+            listen_text = "Hãy lắng nghe file Media và đọc toàn bộ kịch bản thoại dưới đây (không bỏ sót bất kỳ phút nào)." if uploaded_file else "Dựa vào kịch bản thoại dưới đây, hãy hình dung diễn biến của video."
             prompt = f"""
-Bạn là Đạo diễn Âm nhạc cho một video tóm tắt/kể chuyện dài. Hãy lắng nghe file Media và đọc toàn bộ kịch bản thoại dưới đây (không bỏ sót bất kỳ phút nào).
+Bạn là Đạo diễn Âm nhạc cho một video tóm tắt/kể chuyện dài. {listen_text}
 Nhiệm vụ của bạn là chia bộ phim thành các CHƯƠNG LỚN (Chỉ từ 3 đến 5 phân cảnh âm nhạc cho toàn bộ phim). 
 TUYỆT ĐỐI KHÔNG chia nhỏ lắt nhắt. Mỗi phân cảnh âm nhạc phải dài ít nhất 10-20 phút, bao trùm một giai đoạn cảm xúc lớn (ví dụ: Đoạn đầu bình yên, Đoạn giữa cao trào chiến đấu, Đoạn cuối bi thương).
 Với mỗi chương lớn, hãy xác định cảm xúc chủ đạo và CHỈ ĐƯỢC PHÉP phân loại vào 1 trong các thư mục cảm xúc sau đây: [{mood_folders_str}]. Hãy trả về chính xác tên thư mục đó vào trường `mood_folder`.
@@ -692,15 +693,16 @@ Kịch bản thoại (từ đầu đến cuối):
 {script_summary}
 """
             response = None
-            # Vì tài khoản Free bị khóa dòng Pro (Limit: 0), ta chuyển sang dùng toàn bộ dòng Flash
             models_to_try = ['gemini-3.1-flash-lite', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest']
+            
+            contents_payload = [uploaded_file, prompt] if uploaded_file else [prompt]
             
             for model_name in models_to_try:
                 try:
                     self.append_log(f"   -> Đang gọi model {model_name}...")
                     response = client.models.generate_content(
                         model=model_name, 
-                        contents=[uploaded_file, prompt],
+                        contents=contents_payload,
                         config=types.GenerateContentConfig(
                             response_mime_type="application/json",
                             response_schema={"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
