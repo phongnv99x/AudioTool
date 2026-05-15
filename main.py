@@ -61,6 +61,7 @@ class App(ctk.CTk):
         self.music_subs = None
         self.ref_image_path = None
         self.music_attributions = []
+        self.target_language = "vi"  # Ngôn ngữ đích mặc định: Tiếng Việt
 
         # --- Sidebar ---
         self.sidebar_frame = ctk.CTkFrame(self, width=250, corner_radius=0)
@@ -136,8 +137,19 @@ class App(ctk.CTk):
         self.btn_translate = ctk.CTkButton(self.btn_frame, text="2. Bắt đầu Dịch", command=self.start_translation, state="disabled")
         self.btn_translate.pack(side="left", padx=5)
 
-        self.btn_save_srt = ctk.CTkButton(self.btn_frame, text="3. Lưu SRT Tiếng Việt", command=self.save_srt, state="disabled")
+        self.btn_save_srt = ctk.CTkButton(self.btn_frame, text="3. Lưu SRT", command=self.save_srt, state="disabled")
         self.btn_save_srt.pack(side="right", padx=5)
+
+        # Chọn ngôn ngữ đích
+        self.lang_label1 = ctk.CTkLabel(self.btn_frame, text="Ngôn ngữ đích:")
+        self.lang_label1.pack(side="right", padx=(10, 2))
+        self.lang_seg = ctk.CTkSegmentedButton(
+            self.btn_frame,
+            values=["🇻🇳 Việt", "🇯🇵 Nhật", "🇰🇷 Hàn"],
+            command=self.on_language_changed
+        )
+        self.lang_seg.set("🇻🇳 Việt")
+        self.lang_seg.pack(side="right", padx=5)
 
         self.status_label = ctk.CTkLabel(self.tab1, text="Trạng thái: Đang chờ...")
         self.status_label.pack(anchor="w", pady=5)
@@ -154,7 +166,8 @@ class App(ctk.CTk):
         ctk.CTkLabel(hdr, text="ID", width=40).pack(side="left")
         ctk.CTkLabel(hdr, text="Thời gian", width=120).pack(side="left")
         ctk.CTkLabel(hdr, text="Tiếng Trung", width=250, anchor="w").pack(side="left", padx=10)
-        ctk.CTkLabel(hdr, text="Tiếng Việt", width=250, anchor="w").pack(side="left", padx=10)
+        self.col_lang_header = ctk.CTkLabel(hdr, text="Tiếng Việt", width=250, anchor="w")
+        self.col_lang_header.pack(side="left", padx=10)
 
         self.rows_frame = ctk.CTkFrame(self.table_frame, fg_color="transparent")
         self.rows_frame.pack(fill="both", expand=True)
@@ -195,6 +208,12 @@ class App(ctk.CTk):
         if path:
             self.video_path1 = path
             self.vid_lbl1.configure(text=os.path.basename(path))
+
+    def on_language_changed(self, selected):
+        lang_map = {"🇻🇳 Việt": "vi", "🇯🇵 Nhật": "ja", "🇰🇷 Hàn": "ko"}
+        col_name = {"vi": "Tiếng Việt", "ja": "日本語", "ko": "한국어"}
+        self.target_language = lang_map.get(selected, "vi")
+        self.col_lang_header.configure(text=col_name[self.target_language])
 
     def prev_page1(self):
         if self.current_page1 > 0:
@@ -304,25 +323,72 @@ class App(ctk.CTk):
             
             import concurrent.futures
             
+            # Xây dựng prompt dịch thuật theo ngôn ngữ đích
+            lang = self.target_language
+            lang_prompts = {
+                "vi": {
+                    "role": "dịch giả phim truyền hình chuyên nghiệp",
+                    "target": "Tiếng Việt",
+                    "rules": (
+                        "- Giữ nguyên ngữ cảnh phim cổ trang, kiếm hiệp, ngôn tình.\n"
+                        "- Chú ý giới tính: Khi thấy chữ 奴才 / 奴婢 / 我, hãy tự phân tích ngữ cảnh để dịch ĐỒNG NHẤT là \"nô tài\" (nếu là nam/thái giám) hoặc \"nô tỳ\" (nếu là nữ/nha hoàn). TUYỆT ĐỐI không dịch lộn xộn.\n"
+                        "- Sử dụng chính xác các từ xưng hô cổ trang như: công tử, tại hạ, huynh đài, muội muội...\n"
+                        "- Dịch mượt mà, tự nhiên như phim lồng tiếng chuyên nghiệp.\n"
+                        "- Tên nhân vật phải được THỐNG NHẤT xuyên suốt. BẮT BUỘC viết Hoa chữ cái đầu của mỗi âm tiết trong tên người (Ví dụ: Tiêu Viêm, Đường Tam, Hàn Lập...). Không được viết thường tên riêng."
+                    ),
+                    "audio_note": (
+                        "Hãy chú ý các mốc thời gian (timestamp) của từng câu phụ đề để nghe giọng nói thực tế. "
+                        "Nếu giọng nam xưng 奴才 thì phải dịch là 'nô tài', nếu giọng nữ xưng 奴婢/奴才 thì phải dịch là 'nô tỳ'. "
+                        "Việc nghe âm thanh là BẮT BUỘC để phân biệt giới tính!"
+                    ),
+                },
+                "ja": {
+                    "role": "professional anime and drama subtitle translator",
+                    "target": "Japanese (日本語)",
+                    "rules": (
+                        "- This is a Chinese Xianxia/Wuxia/cultivation fantasy animation (Donghua). Translate into natural, fluent Japanese suitable for anime subtitles.\n"
+                        "- Use appropriate speech levels: use だ/である style for warrior/cultivator characters, and です/ます for formal/polite scenes.\n"
+                        "- Preserve character honorifics and titles (e.g., 師父 → 師父/師匠, 殿下 → 殿下, 道友 → 道友).\n"
+                        "- Character names: use the original Chinese phonetic reading consistently (e.g., 萧炎 → シャオ・イェン).\n"
+                        "- Keep the tone dramatic and impactful like a professional anime dub."
+                    ),
+                    "audio_note": (
+                        "Please listen to the attached media and pay attention to the speaker's voice and tone "
+                        "to ensure the Japanese translation matches the character's gender, age, and personality."
+                    ),
+                },
+                "ko": {
+                    "role": "전문 드라마 자막 번역가",
+                    "target": "Korean (한국어)",
+                    "rules": (
+                        "- 이것은 중국 선협/무협/수련 판타지 애니메이션(동화)입니다. 한국 드라마/애니 자막 스타일로 자연스럽게 번역하세요.\n"
+                        "- 캐릭터의 말투와 신분에 맞는 어체 사용: 무사/수련자는 ~다/~이다 체, 격식 있는 장면은 ~습니다/~요 체.\n"
+                        "- 존칭과 직함 유지 (예: 師父 → 사부님, 殿下 → 전하, 道友 → 도우).\n"
+                        "- 캐릭터 이름은 일관된 한국식 표기 사용 (예: 萧炎 → 샤오 얀).\n"
+                        "- 전문 더빙 드라마처럼 박진감 넘치는 어조 유지."
+                    ),
+                    "audio_note": (
+                        "첨부된 미디어를 들으며 화자의 목소리와 어조에 주의하여 한국어 번역이 "
+                        "캐릭터의 성별, 나이, 성격에 맞도록 하세요."
+                    ),
+                },
+            }
+            lp = lang_prompts[lang]
+            
             def translate_batch(batch_idx):
                 start_idx = batch_idx * batch_size
                 end_idx = min(start_idx + batch_size, len(texts))
                 batch = texts[start_idx:end_idx]
                 
-                prompt = f"""
-Bạn là một dịch giả phim truyền hình chuyên nghiệp. Nhiệm vụ của bạn là dịch các câu phụ đề phim từ Tiếng Trung sang Tiếng Việt.
-YÊU CẦU QUAN TRỌNG:
-- Giữ nguyên ngữ cảnh phim cổ trang, kiếm hiệp, ngôn tình.
-- Chú ý giới tính: Khi thấy chữ 奴才 / 奴婢 / 我, hãy tự phân tích ngữ cảnh để dịch ĐỒNG NHẤT là "nô tài" (nếu là nam/thái giám) hoặc "nô tỳ" (nếu là nữ/nha hoàn). TUYỆT ĐỐI không dịch lộn xộn lúc thì nô tài, lúc thì nô tỳ cho cùng 1 nhân vật hoặc bối cảnh.
-- Sử dụng chính xác các từ xưng hô cổ trang như: công tử, tại hạ, huynh đài, muội muội...
-- Dịch mượt mà, tự nhiên như phim lồng tiếng chuyên nghiệp.
-- Tên nhân vật phải được THỐNG NHẤT xuyên suốt. BẮT BUỘC viết Hoa chữ cái đầu của mỗi âm tiết trong tên người (Ví dụ: Tiêu Viêm, Đường Tam, Hàn Lập...). Không được viết thường tên riêng.
-
-Đầu vào là mảng JSON các câu cần dịch:
-{json.dumps(batch, ensure_ascii=False)}
-"""         
+                prompt = (
+                    f"You are a {lp['role']}. Your task is to translate the following subtitle lines "
+                    f"from Chinese into {lp['target']}.\n"
+                    f"IMPORTANT REQUIREMENTS:\n{lp['rules']}\n\n"
+                    f"The input is a JSON array of sentences to translate:\n"
+                    f"{json.dumps(batch, ensure_ascii=False)}\n"
+                )
                 if uploaded_file:
-                    prompt += "\nLƯU Ý ĐẶC BIỆT: HÃY NGHE FILE MEDIA ĐÍNH KÈM! Hãy chú ý các mốc thời gian (timestamp) của từng câu phụ đề để nghe giọng nói thực tế. Nếu giọng nam xưng 奴才 thì phải dịch là 'nô tài', nếu giọng nữ xưng 奴婢/奴才 thì phải dịch là 'nô tỳ'. Việc nghe âm thanh là BẮT BUỘC để phân biệt giới tính!"
+                    prompt += f"\nSPECIAL NOTE: LISTEN TO THE ATTACHED MEDIA FILE! {lp['audio_note']}"
 
                 contents_to_send = [uploaded_file, prompt] if uploaded_file else prompt
                 
@@ -1032,7 +1098,57 @@ Kịch bản thoại (từ đầu đến cuối):
             client = genai.Client(api_key=self.gemini_api_key)
             self.status_label3.configure(text="Đang gọi AI (gemini-2.5-flash)...")
             
-            prompt = f"""
+            # Xây dựng SEO prompt theo ngôn ngữ đích
+            lang = self.target_language
+            
+            if lang == "ja":
+                seo_prompt_text = (
+                    "You are a YouTube SEO expert specializing in Chinese 3D animation (Donghua / Xianxia / Wuxia) "
+                    "for the JAPANESE market. Based on the script below (extracted from SRT subtitles) and the sample "
+                    "thumbnail image (if provided), create:\n"
+                    "1. 3 video titles in Japanese (clickbait style, max curiosity, high CTR for YouTube JP audience).\n"
+                    "2. 3 English AI thumbnail prompts (3 completely different concepts, accurate to the script):\n"
+                    "   - Concept 1 (Action/Climax): Male lead or enemy power explosion from the actual script.\n"
+                    "   - Concept 2 (Female Character): A female character FROM the script — must include: "
+                    "\"extremely beautiful, hyper-seductive, revealing fantasy outfit, deep cleavage, voluptuous body\".\n"
+                    "   - Concept 3 (Mystery/Boss): A mysterious side character, beast, or grand landscape MENTIONED in the script.\n"
+                    "   Typography for each prompt: include a SHORT Japanese text badge (e.g. '転生' or '修仙') in top-right, "
+                    "and a punchy 2-4 kanji bottom title. Each prompt must use DIFFERENT text colors.\n"
+                    "   Visual style: '3D Chinese animation style, Donghua, Unreal Engine 5 render, highly detailed 3D masterpiece, cinematic lighting'.\n"
+                    "3. 1 compelling Japanese video description with trending Japanese hashtags (e.g. #中国アニメ #転生 #修仙 #仙人 #動画).\n"
+                    "4. 1 comma-separated list of Japanese keywords (tags), no #, relevant to the script content.\n\n"
+                    "Return ONLY a JSON object (no markdown), structure:\n"
+                    '{"titles": ["タイトル1", "タイトル2", "タイトル3"], '
+                    '"thumbnail_prompts": ["Prompt 1", "Prompt 2", "Prompt 3"], '
+                    '"description": "説明文... #hashtag1 #hashtag2", '
+                    '"tags": "tag1, tag2, tag3"}\n\n'
+                    f"Script:\n{script_summary}"
+                )
+            elif lang == "ko":
+                seo_prompt_text = (
+                    "You are a YouTube SEO expert specializing in Chinese 3D animation (Donghua / Xianxia / Wuxia) "
+                    "for the KOREAN market. Based on the script below (extracted from SRT subtitles) and the sample "
+                    "thumbnail image (if provided), create:\n"
+                    "1. 3 video titles in Korean (clickbait style, max curiosity, high CTR for YouTube KR audience).\n"
+                    "2. 3 English AI thumbnail prompts (3 completely different concepts, accurate to the script):\n"
+                    "   - Concept 1 (Action/Climax): Male lead or enemy power explosion from the actual script.\n"
+                    "   - Concept 2 (Female Character): A female character FROM the script — must include: "
+                    "\"extremely beautiful, hyper-seductive, revealing fantasy outfit, deep cleavage, voluptuous body\".\n"
+                    "   - Concept 3 (Mystery/Boss): A mysterious side character, beast, or grand landscape MENTIONED in the script.\n"
+                    "   Typography for each prompt: include a SHORT Korean text badge (e.g. '회귀' or '선협') in top-right, "
+                    "and a punchy 2-4 Hangul bottom title. Each prompt must use DIFFERENT text colors.\n"
+                    "   Visual style: '3D Chinese animation style, Donghua, Unreal Engine 5 render, highly detailed 3D masterpiece, cinematic lighting'.\n"
+                    "3. 1 compelling Korean video description with trending Korean hashtags (e.g. #중국애니 #환생 #선협 #무협 #수련).\n"
+                    "4. 1 comma-separated list of Korean keywords (tags), no #, relevant to the script content.\n\n"
+                    "Return ONLY a JSON object (no markdown), structure:\n"
+                    '{"titles": ["제목1", "제목2", "제목3"], '
+                    '"thumbnail_prompts": ["Prompt 1", "Prompt 2", "Prompt 3"], '
+                    '"description": "설명문... #hashtag1 #hashtag2", '
+                    '"tags": "tag1, tag2, tag3"}\n\n'
+                    f"Script:\n{script_summary}"
+                )
+            else:  # vi - Vietnamese (default)
+                seo_prompt_text = f"""
 Bạn là một chuyên gia YouTube SEO và Đạo diễn Nghệ thuật chuyên về mảng Hoạt hình 3D Trung Quốc (Đấu La Đại Lục, Đấu Phá Thương Khung, Tu Tiên, Xuyên Không).
 Dựa vào nội dung kịch bản dưới đây (được trích xuất từ file phụ đề SRT, chủ yếu là lời thoại) và hình ảnh thumbnail mẫu (nếu có), hãy tạo:
 1. 3 Tiêu đề video (giật tít, khơi gợi sự tò mò để tăng CTR cao nhất).
@@ -1040,7 +1156,7 @@ Dựa vào nội dung kịch bản dưới đây (được trích xuất từ fi
 
 BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU NHƯNG PHẢI ĐÚNG VỚI NỘI DUNG KỊCH BẢN:
 - Concept 1 (Cao Trào/Chiến Đấu): Lấy cảnh hành động hoặc nhân vật nam chính/kẻ thù bùng nổ sức mạnh CÓ THẬT trong kịch bản (glowing aura, lightning). Bối cảnh tối, kỳ bí.
-- Concept 2 (Nhân vật Nữ/Quyến rũ cực độ): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản. BẮT BUỘC phái nhồi các từ khóa miêu tả sự quyến rũ tột độ vào prompt tiếng Anh: "extremely beautiful, hyper-seductive, wearing extremely revealing fantasy outfit, deep cleavage, voluptuous body, ultra high slit dress showing bare legs, bare shoulders". Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
+- Concept 2 (Nhân vật Nữ/Quyến rũ cực độ): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản. BẮT BUỘC phải nhồi các từ khóa miêu tả sự quyến rũ tột độ vào prompt tiếng Anh: "extremely beautiful, hyper-seductive, wearing extremely revealing fantasy outfit, deep cleavage, voluptuous body, ultra high slit dress showing bare legs, bare shoulders". Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
 - Concept 3 (Bí Ẩn/Boss/Toàn Cảnh): Lấy một nhân vật phụ bí ẩn, một quái thú, hoặc khung cảnh tông môn/di tích rộng lớn ĐƯỢC NHẮC ĐẾN trong kịch bản. Nếu kịch bản chỉ có đối thoại trong nhà, hãy biến tấu thành một khung cảnh nội thất tráng lệ.
 
 YÊU CẦU VỀ CHỮ (TYPOGRAPHY) DỰA CHẶT CHẼ VÀO KỊCH BẢN (KHÔNG ĐƯỢC BỊA ĐẶT NẾU KỊCH BẢN KHÔNG CÓ):
@@ -1066,6 +1182,8 @@ YÊU CẦU CHUNG:
 Kịch bản thoại:
 {script_summary}
 """
+
+            prompt = seo_prompt_text
             contents = []
             if getattr(self, 'ref_image_path', None) and os.path.exists(self.ref_image_path):
                 img = PIL.Image.open(self.ref_image_path)
