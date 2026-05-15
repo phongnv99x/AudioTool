@@ -979,14 +979,14 @@ Dựa vào nội dung kịch bản dưới đây và hình ảnh thumbnail mẫu
 
 BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU NHƯNG PHẢI ĐÚNG VỚI NỘI DUNG KỊCH BẢN:
 - Concept 1 (Cao Trào/Chiến Đấu): Lấy cảnh hành động hoặc nhân vật nam chính/kẻ thù bùng nổ sức mạnh CÓ THẬT trong kịch bản (glowing aura, lightning). Bối cảnh tối, kỳ bí.
-- Concept 2 (Nhân vật Nữ/Quyến rũ cực độ): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản. BẮT BUỘC phải nhồi các từ khóa miêu tả sự quyến rũ tột độ vào prompt tiếng Anh: "extremely beautiful, hyper-seductive, wearing extremely revealing fantasy outfit, deep cleavage, voluptuous body, ultra high slit dress showing bare legs, bare shoulders". Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
+- Concept 2 (Nhân vật Nữ/Quyến rũ cực độ): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản. BẮT BUỘC phái nhồi các từ khóa miêu tả sự quyến rũ tột độ vào prompt tiếng Anh: "extremely beautiful, hyper-seductive, wearing extremely revealing fantasy outfit, deep cleavage, voluptuous body, ultra high slit dress showing bare legs, bare shoulders". Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
 - Concept 3 (Bí Ẩn/Boss/Toàn Cảnh): Lấy một nhân vật phụ bí ẩn, một quái thú, hoặc khung cảnh tông môn/di tích rộng lớn ĐƯỢC NHẮC ĐẾN trong kịch bản.
 
 YÊU CẦU VỀ CHỮ (TYPOGRAPHY) DỰA CHẶT CHẼ VÀO KỊCH BẢN:
-- Text góc trái (Top Left Badge): Hãy TỰ PHÂN TÍCH THỂ LOẠI của kịch bản này để viết (Ví dụ: Nếu kịch bản nói về Hệ Thống thì ghi "HỆ THỐNG", nếu tu tiên thì ghi "TU TIÊN", nếu trùng sinh ghi "TRỌNG SINH", hoặc "TẬP MỚI").
+- Text góc phải (Top Right Badge): Hãy TỰ PHÂN TÍCH THỂ LOẠI của kịch bản này để viết (Ví dụ: Nếu kịch bản nói về Hệ Thống thì ghi "HỆ THỐNG", nếu tu tiên thì ghi "TU TIÊN", nếu trùng sinh ghi "TRỌNG SINH", hoặc "TẬP MỚI").
 - Text chính (Bottom Title): Rút trích 1 câu siêu ngắn (3-6 chữ) mô tả ĐÚNG diễn biến sốc nhất của kịch bản này (Ví dụ: "TIÊU DIỆT TÔNG MÔN", "THỨC TỈNH HUYẾT MẠCH").
 - Màu sắc chữ: Phải KHÁC NHAU giữa 3 prompt. (Ví dụ: Prompt 1 dùng chữ Vàng viền Đen tỏa sáng đỏ, Prompt 2 dùng chữ Tím viền Trắng tỏa sáng Neon Cyan, Prompt 3 dùng chữ Xanh lá viền Đen).
-- Ví dụ cách chèn text: "Top left corner has text 'TRỌNG SINH' in purple badge. Bottom text: 'THỨC TỈNH VÕ THẦN' in large 3D bold font, yellow gradient with thick black stroke and fiery glow."
+- Ví dụ cách chèn text: "Top right corner has text 'TRỌNG SINH' in purple badge. Bottom text: 'THỨC TỈNH VÕ THẦN' in large 3D bold font, yellow gradient with thick black stroke and fiery glow."
 
 YÊU CẦU CHUNG:
 - Chất lượng & Phong cách: "3D Chinese animation style, Donghua, Unreal Engine 5 render, highly detailed 3D masterpiece, cinematic lighting, extreme contrast".
@@ -1997,4 +1997,3 @@ KỊCH BẢN PHIM:
 if __name__ == "__main__":
     app = App()
     app.mainloop()
-
