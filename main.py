@@ -979,7 +979,7 @@ Dựa vào nội dung kịch bản dưới đây và hình ảnh thumbnail mẫu
 
 BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU NHƯNG PHẢI ĐÚNG VỚI NỘI DUNG KỊCH BẢN:
 - Concept 1 (Cao Trào/Chiến Đấu): Lấy cảnh hành động hoặc nhân vật nam chính/kẻ thù bùng nổ sức mạnh CÓ THẬT trong kịch bản (glowing aura, lightning). Bối cảnh tối, kỳ bí.
-- Concept 2 (Nhân vật Nữ/Quyến rũ hoặc Tình cảm): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản (beautiful and seductive, high slit dress) đặt trong bối cảnh lãng mạn hoặc tiên cảnh. Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
+- Concept 2 (Nhân vật Nữ/Quyến rũ cực độ): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản. BẮT BUỘC phải nhồi các từ khóa miêu tả sự quyến rũ tột độ vào prompt tiếng Anh: "extremely beautiful, hyper-seductive, wearing extremely revealing fantasy outfit, deep cleavage, voluptuous body, ultra high slit dress showing bare legs, bare shoulders". Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
 - Concept 3 (Bí Ẩn/Boss/Toàn Cảnh): Lấy một nhân vật phụ bí ẩn, một quái thú, hoặc khung cảnh tông môn/di tích rộng lớn ĐƯỢC NHẮC ĐẾN trong kịch bản.
 
 YÊU CẦU VỀ CHỮ (TYPOGRAPHY) DỰA CHẶT CHẼ VÀO KỊCH BẢN:
