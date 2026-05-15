@@ -1453,7 +1453,8 @@ KỊCH BẢN PHIM:
             proc1 = subprocess.run(cmd_slow, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True, encoding='utf-8')
 
             if proc1.returncode != 0 and use_nvenc:
-                self.append_log5("   → [Cảnh báo] NVENC lỗi, chuyển sang CPU...")
+                self.append_log5(f"   → [Cảnh báo] NVENC lỗi (code {proc1.returncode}), chuyển sang CPU...")
+                self.append_log5(f"   → NVENC stderr: {proc1.stderr[-300:]}")
                 cmd_slow_cpu = [
                     "ffmpeg", "-y", "-i", self.video_path5,
                     "-filter_complex", "[0:v]setpts=1.25*PTS[v]",
@@ -1467,6 +1468,14 @@ KỊCH BẢN PHIM:
                 raise Exception(f"FFmpeg giảm tốc thất bại:\n{proc1.stderr[-500:]}")
             if not os.path.exists(temp_slow_video) or os.path.getsize(temp_slow_video) == 0:
                 raise Exception("File video giảm tốc tạo ra bị rỗng hoặc không tồn tại.")
+
+            # Đọc kích thước thực tế của video sau giảm tốc để validate ROI
+            import cv2
+            cap_check = cv2.VideoCapture(temp_slow_video)
+            vid_w = int(cap_check.get(cv2.CAP_PROP_FRAME_WIDTH))
+            vid_h = int(cap_check.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            cap_check.release()
+            self.append_log5(f"   → Kích thước video sau giảm tốc: {vid_w}x{vid_h}")
 
             self.progress_bar5.set(0.3)
             self.append_log5("   ✅ Đã tạo xong video 0.8x. Sẵn sàng quét OCR.\n")
@@ -1513,6 +1522,15 @@ KỊCH BẢN PHIM:
 
             if self.ocr_bbox:
                 x, y, w, h_box = self.ocr_bbox
+
+                # Clamp ROI vào trong kích thước thực tế của video (tránh lỗi -22 Invalid argument)
+                x     = max(0, min(x, vid_w - 1))
+                y     = max(0, min(y, vid_h - 1))
+                w     = max(1, min(w, vid_w - x))
+                h_box = max(1, min(h_box, vid_h - y))
+
+                self.append_log5(f"   → Làm mờ vùng ROI sau clamp: ({w}x{h_box} tại {x},{y}) trên frame {vid_w}x{vid_h}")
+
                 # Blur vùng phụ đề trước, rồi hflip toàn bộ frame
                 filter_str = (
                     f"[0:v]split[base][blur_in];"
@@ -1520,7 +1538,6 @@ KỊCH BẢN PHIM:
                     f"[base][blurred]overlay={x}:{y}[overlaid];"
                     f"[overlaid]hflip[v]"
                 )
-                self.append_log5(f"   → Làm mờ vùng ROI ({w}x{h_box} tại {x},{y}) + lật hình.")
             else:
                 filter_str = "[0:v]hflip[v]"
                 self.append_log5("   → Chỉ lật hình (không có vùng ROI để blur).")
@@ -1556,6 +1573,8 @@ KỊCH BẢN PHIM:
                 proc3 = subprocess.run(cmd_clean_cpu, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True, encoding='utf-8')
 
             if proc3.returncode != 0:
+                # Log stderr chi tiết ra UI để dễ debug
+                self.append_log5(f"   → FFmpeg stderr (bước 3):\n{proc3.stderr[-800:]}")
                 raise Exception(f"FFmpeg tạo video sạch thất bại:\n{proc3.stderr[-500:]}")
 
             if not os.path.exists(clean_video) or os.path.getsize(clean_video) == 0:
