@@ -173,10 +173,18 @@ def detect_beats(audio_path, log_callback=None):
 
     y, sr = librosa.load(audio_path, sr=None, mono=True)
     tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
+    
+    # librosa >= 0.10 trả về tempo là numpy array thay vì scalar → cần flatten
+    import numpy as np
+    if isinstance(tempo, np.ndarray):
+        tempo = float(tempo.flat[0])
+    else:
+        tempo = float(tempo)
+        
     beat_times = librosa.frames_to_time(beat_frames, sr=sr).tolist()
 
     if log_callback:
-        log_callback(f"   → Tempo: {float(tempo):.1f} BPM | {len(beat_times)} beat phát hiện")
+        log_callback(f"   → Tempo: {tempo:.1f} BPM | {len(beat_times)} beat phát hiện")
 
     return beat_times
 
