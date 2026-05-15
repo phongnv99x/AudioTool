@@ -973,20 +973,20 @@ Kịch bản thoại (từ đầu đến cuối):
             
             prompt = f"""
 Bạn là một chuyên gia YouTube SEO và Đạo diễn Nghệ thuật chuyên về mảng Hoạt hình 3D Trung Quốc (Đấu La Đại Lục, Đấu Phá Thương Khung, Tu Tiên, Xuyên Không).
-Dựa vào nội dung kịch bản dưới đây và hình ảnh thumbnail mẫu (nếu có), hãy tạo:
+Dựa vào nội dung kịch bản dưới đây (được trích xuất từ file phụ đề SRT, chủ yếu là lời thoại) và hình ảnh thumbnail mẫu (nếu có), hãy tạo:
 1. 3 Tiêu đề video (giật tít, khơi gợi sự tò mò để tăng CTR cao nhất).
 2. 3 Đoạn prompt bằng tiếng Anh (chi tiết, miêu tả ánh sáng, góc máy, chất lượng 8k) để tôi dùng làm lệnh vẽ AI Thumbnail. 
 
 BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU NHƯNG PHẢI ĐÚNG VỚI NỘI DUNG KỊCH BẢN:
 - Concept 1 (Cao Trào/Chiến Đấu): Lấy cảnh hành động hoặc nhân vật nam chính/kẻ thù bùng nổ sức mạnh CÓ THẬT trong kịch bản (glowing aura, lightning). Bối cảnh tối, kỳ bí.
 - Concept 2 (Nhân vật Nữ/Quyến rũ cực độ): Lựa chọn một nhân vật nữ XUẤT HIỆN trong kịch bản. BẮT BUỘC phái nhồi các từ khóa miêu tả sự quyến rũ tột độ vào prompt tiếng Anh: "extremely beautiful, hyper-seductive, wearing extremely revealing fantasy outfit, deep cleavage, voluptuous body, ultra high slit dress showing bare legs, bare shoulders". Nếu kịch bản không có nữ, hãy thay bằng một bảo vật/vũ khí quan trọng rực sáng.
-- Concept 3 (Bí Ẩn/Boss/Toàn Cảnh): Lấy một nhân vật phụ bí ẩn, một quái thú, hoặc khung cảnh tông môn/di tích rộng lớn ĐƯỢC NHẮC ĐẾN trong kịch bản.
+- Concept 3 (Bí Ẩn/Boss/Toàn Cảnh): Lấy một nhân vật phụ bí ẩn, một quái thú, hoặc khung cảnh tông môn/di tích rộng lớn ĐƯỢC NHẮC ĐẾN trong kịch bản. Nếu kịch bản chỉ có đối thoại trong nhà, hãy biến tấu thành một khung cảnh nội thất tráng lệ.
 
-YÊU CẦU VỀ CHỮ (TYPOGRAPHY) DỰA CHẶT CHẼ VÀO KỊCH BẢN:
-- Text góc phải (Top Right Badge): Hãy TỰ PHÂN TÍCH THỂ LOẠI của kịch bản này để viết (Ví dụ: Nếu kịch bản nói về Hệ Thống thì ghi "HỆ THỐNG", nếu tu tiên thì ghi "TU TIÊN", nếu trùng sinh ghi "TRỌNG SINH", hoặc "TẬP MỚI").
-- Text chính (Bottom Title): Rút trích 1 câu siêu ngắn (3-6 chữ) mô tả ĐÚNG diễn biến sốc nhất của kịch bản này (Ví dụ: "TIÊU DIỆT TÔNG MÔN", "THỨC TỈNH HUYẾT MẠCH").
+YÊU CẦU VỀ CHỮ (TYPOGRAPHY) DỰA CHẶT CHẼ VÀO KỊCH BẢN (KHÔNG ĐƯỢC BỊA ĐẶT NẾU KỊCH BẢN KHÔNG CÓ):
+- Text góc phải (Top Right Badge): Hãy TỰ PHÂN TÍCH THỂ LOẠI của kịch bản này để viết (Ví dụ: Nếu có nói về Hệ Thống thì ghi "HỆ THỐNG", nếu tu tiên thì ghi "TU TIÊN", nếu không rõ thể loại thì cứ ghi "TẬP MỚI" hoặc "CỰC HAY").
+- Text chính (Bottom Title): Rút trích 1 câu siêu ngắn (3-6 chữ) mô tả ĐÚNG diễn biến sốc nhất của đoạn thoại này. (LƯU Ý QUAN TRỌNG: BẮT BUỘC PHẢI TỰ SUY LUẬN TỪ LỜI THOẠI, TUYỆT ĐỐI KHÔNG COPY CÁC TỪ NHƯ "TIÊU DIỆT TÔNG MÔN" HAY "THỨC TỈNH" NẾU TRONG THOẠI KHÔNG CÓ).
 - Màu sắc chữ: Phải KHÁC NHAU giữa 3 prompt. (Ví dụ: Prompt 1 dùng chữ Vàng viền Đen tỏa sáng đỏ, Prompt 2 dùng chữ Tím viền Trắng tỏa sáng Neon Cyan, Prompt 3 dùng chữ Xanh lá viền Đen).
-- Ví dụ cách chèn text: "Top right corner has text 'TRỌNG SINH' in purple badge. Bottom text: 'THỨC TỈNH VÕ THẦN' in large 3D bold font, yellow gradient with thick black stroke and fiery glow."
+- Ví dụ cách chèn text: "Top right corner has text 'TRỌNG SINH' in purple badge. Bottom text: 'BẠI LỘ THÂN PHẬN' in large 3D bold font, yellow gradient with thick black stroke and fiery glow."
 
 YÊU CẦU CHUNG:
 - Chất lượng & Phong cách: "3D Chinese animation style, Donghua, Unreal Engine 5 render, highly detailed 3D masterpiece, cinematic lighting, extreme contrast".
