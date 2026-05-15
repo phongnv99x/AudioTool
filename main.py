@@ -1992,12 +1992,12 @@ KỊCH BẢN PHIM:
         messagebox.showinfo(
             "Hướng dẫn khoanh vùng",
             "1. Kéo chuột để khoanh vùng chữ/logo.\n"
-            "2. Bấm ENTER hoặc SPACE để lưu vùng vừa khoanh (bạn có thể khoanh tiếp vùng thứ 2, thứ 3...).\n"
-            "3. Khi khoanh xong tất cả, bấm phím ESC để xác nhận và thoát.\n"
-            "4. Bấm 'c' để xóa vùng đang khoanh dở nếu vẽ sai."
+            "2. Bấm ENTER hoặc SPACE để lưu vùng vừa khoanh.\n"
+            "3. Nếu không khoanh gì mà bấm ENTER/SPACE, vòng lặp sẽ KẾT THÚC và lưu toàn bộ.\n"
+            "4. Đóng cửa sổ (dấu X) để Hủy bỏ tất cả."
         )
 
-        win_name = "Khoanh nhieu vung (Nhan ESC de thoat)"
+        win_name = "Khoanh nhieu vung"
         cv2.namedWindow(win_name, cv2.WINDOW_NORMAL)
         
         # Thay đổi kích thước cửa sổ nếu video quá to
@@ -2006,17 +2006,39 @@ KỊCH BẢN PHIM:
         if scale < 1:
             cv2.resizeWindow(win_name, int(w*scale), int(h*scale))
 
-        disp = frame.copy()
-        cv2.putText(disp, "Keo chuot de khoanh vung.", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-        cv2.putText(disp, "An ENTER hoac SPACE de LUU vung.", (20, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-        cv2.putText(disp, "An ESC de KET THUC.", (20, 130), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
-        cv2.putText(disp, "An 'c' de HUY vung dang ve.", (20, 170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 165, 255), 2)
+        rois = []
+        while True:
+            disp = frame.copy()
+            # Vẽ các ROI đã chọn để user nhìn thấy
+            for i, (rx, ry, rw, rh) in enumerate(rois):
+                cv2.rectangle(disp, (rx, ry), (rx+rw, ry+rh), (0, 0, 255), 2)
+                cv2.putText(disp, f"ROI {i+1}", (rx, ry-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
-        rois = cv2.selectROIs(win_name, disp, showCrosshair=True, fromCenter=False)
-        cv2.destroyWindow(win_name)
+            cv2.putText(disp, f"Da khoanh: {len(rois)} vung.", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+            cv2.putText(disp, "Keo chuot khoanh vung moi roi an ENTER/SPACE de Luu.", (20, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+            cv2.putText(disp, "Khong khoanh gi ma an ENTER/SPACE de KET THUC.", (20, 130), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+            cv2.putText(disp, "Click [X] tren cung ben phai de HUY TOAN BO.", (20, 170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
+
+            bbox = cv2.selectROI(win_name, disp, showCrosshair=True, fromCenter=False)
+            
+            if cv2.getWindowProperty(win_name, cv2.WND_PROP_VISIBLE) < 1:
+                # User closed the window
+                rois = []
+                break
+                
+            if bbox == (0, 0, 0, 0):
+                # User pressed enter without drawing -> Finish
+                break
+            else:
+                rois.append(bbox)
+
+        try:
+            cv2.destroyWindow(win_name)
+        except:
+            pass
 
         if len(rois) > 0:
-            self.tab7_rois = rois.tolist()
+            self.tab7_rois = rois
             self.btn_tab7_roi.configure(text=f"🎯 Đã khoanh ({len(rois)} vùng)", fg_color="green")
             self.lbl_tab7_roi.configure(text="Video sẽ được làm mờ trước khi Reup.")
         else:
