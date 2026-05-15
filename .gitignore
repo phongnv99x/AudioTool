@@ -31,3 +31,6 @@ scratch/
 # Cookies (thông tin nhạy cảm)
 *.cookies.txt
 *_cookies.txt
+
+# CapCut API submodule or temp
+capcut_api/
