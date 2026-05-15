@@ -99,6 +99,7 @@ class App(ctk.CTk):
         self.tab4 = self.tabview.add("Tạo Intro 30s")
         self.tab5 = self.tabview.add("Cào Phụ Đề (OCR)")
         self.tab6 = self.tabview.add("Tải Video")
+        self.tab7 = self.tabview.add("CapCut Reup")
 
         self.setup_tab1()
         self.setup_tab2()
@@ -106,6 +107,7 @@ class App(ctk.CTk):
         self.setup_tab4()
         self.setup_tab5()
         self.setup_tab6()
+        self.setup_tab7()
 
     def save_keys(self):
         gk = self.gemini_entry.get()
@@ -1773,6 +1775,213 @@ KỊCH BẢN PHIM:
             messagebox.showerror("Lỗi Tải Video", str(e))
         finally:
             self.after(0, lambda: self.btn_download6.configure(state="normal"))
+
+    # ================= TAB 7: CAPCUT REUP =================
+
+    def setup_tab7(self):
+        """Tab 7: Tự động tạo CapCut Draft (Reup) từ video + SRT + nhạc nền."""
+        tab = self.tab7
+        tab.grid_columnconfigure(0, weight=1)
+
+        # ── Header ───────────────────────────────────────────────────────────
+        ctk.CTkLabel(tab, text="🎬 CapCut Reup Builder — Bo Bắp Media",
+                     font=ctk.CTkFont(size=16, weight="bold")).pack(pady=(16, 4))
+        ctk.CTkLabel(tab, text="Tự động tạo CapCut Draft với sub Việt + nhạc nền + hiệu ứng zoom theo nhịp",
+                     font=ctk.CTkFont(size=11), text_color="gray").pack(pady=(0, 12))
+
+        # ── Input frame ───────────────────────────────────────────────────────
+        inp_frame = ctk.CTkFrame(tab)
+        inp_frame.pack(fill="x", padx=20, pady=4)
+        inp_frame.grid_columnconfigure(1, weight=1)
+
+        def make_file_row(parent, row, label, attr_var, filetypes, placeholder):
+            ctk.CTkLabel(parent, text=label, width=120, anchor="e").grid(
+                row=row, column=0, padx=(12, 8), pady=6, sticky="e")
+            entry = ctk.CTkEntry(parent, placeholder_text=placeholder)
+            entry.grid(row=row, column=1, padx=(0, 8), pady=6, sticky="ew")
+            setattr(self, attr_var, entry)
+
+            def browse(e=entry, ft=filetypes):
+                path = filedialog.askopenfilename(filetypes=ft)
+                if path:
+                    e.delete(0, "end")
+                    e.insert(0, path)
+            btn = ctk.CTkButton(parent, text="Chọn...", width=80, command=browse)
+            btn.grid(row=row, column=2, padx=(0, 12), pady=6)
+
+        make_file_row(inp_frame, 0, "📹 Video sạch:",
+                      "tab7_video_entry",
+                      [("Video", "*.mp4 *.avi *.mkv *.mov"), ("Tất cả", "*.*")],
+                      "Chọn file video từ Tab 5 (_Clean.mp4)...")
+
+        make_file_row(inp_frame, 1, "📝 SRT Việt:",
+                      "tab7_srt_entry",
+                      [("SRT Subtitle", "*.srt"), ("Tất cả", "*.*")],
+                      "Chọn file SRT đã dịch từ Tab 1...")
+
+        make_file_row(inp_frame, 2, "🎵 Nhạc nền:",
+                      "tab7_bgm_entry",
+                      [("Audio", "*.mp3 *.wav *.m4a *.aac"), ("Tất cả", "*.*")],
+                      "Chọn file nhạc nền từ Tab 2...")
+
+        # Draft folder row
+        ctk.CTkLabel(inp_frame, text="📂 Draft folder:", width=120, anchor="e").grid(
+            row=3, column=0, padx=(12, 8), pady=6, sticky="e")
+        self.tab7_draft_entry = ctk.CTkEntry(
+            inp_frame, placeholder_text="Tự động detect hoặc chọn thư mục CapCut Draft...")
+        self.tab7_draft_entry.grid(row=3, column=1, padx=(0, 8), pady=6, sticky="ew")
+
+        def browse_draft():
+            path = filedialog.askdirectory(title="Chọn thư mục CapCut Draft")
+            if path:
+                self.tab7_draft_entry.delete(0, "end")
+                self.tab7_draft_entry.insert(0, path)
+
+        def auto_detect_draft():
+            try:
+                from capcut_helper import get_capcut_draft_dir
+                d = get_capcut_draft_dir()
+                if d:
+                    self.tab7_draft_entry.delete(0, "end")
+                    self.tab7_draft_entry.insert(0, d)
+                    messagebox.showinfo("Tìm thấy!", f"Draft folder:\n{d}")
+                else:
+                    messagebox.showwarning("Không tìm thấy",
+                        "Không tìm thấy CapCut Draft folder tự động.\n"
+                        "Vui lòng chọn thủ công.")
+            except Exception as e:
+                messagebox.showerror("Lỗi", str(e))
+
+        draft_btn_frame = ctk.CTkFrame(inp_frame, fg_color="transparent")
+        draft_btn_frame.grid(row=3, column=2, padx=(0, 12), pady=6)
+        ctk.CTkButton(draft_btn_frame, text="Chọn...", width=70,
+                      command=browse_draft).pack(side="left", padx=(0, 4))
+        ctk.CTkButton(draft_btn_frame, text="🔍Auto", width=66,
+                      fg_color="#2d6a4f", hover_color="#1b4332",
+                      command=auto_detect_draft).pack(side="left")
+
+        # ── Info banner ───────────────────────────────────────────────────────
+        info_frame = ctk.CTkFrame(tab, fg_color=("#2B2B2B", "#1a1a2e"), corner_radius=10)
+        info_frame.pack(fill="x", padx=20, pady=8)
+        ctk.CTkLabel(info_frame,
+            text="💡  Style Sub Bo Bắp Media: Kem vàng #FFF8E7 | Viền nâu kiếm hiệp #3D1A00\n"
+                 "      Size 6px × 130% scale | Căn giữa màn hình | Cách đáy ~12.5%\n"
+                 "      Zoom ngẫu nhiên [0.97x–1.07x] tự động sync theo nhịp nhạc (librosa)",
+            font=ctk.CTkFont(size=11), justify="left", text_color="#adb5bd").pack(padx=16, pady=10)
+
+        # ── Action button ─────────────────────────────────────────────────────
+        self.btn_build7 = ctk.CTkButton(
+            tab, text="🎬  TẠO CAPCUT DRAFT",
+            height=44, font=ctk.CTkFont(size=14, weight="bold"),
+            fg_color="#6a0dad", hover_color="#4a0090",
+            command=self.start_capcut_build)
+        self.btn_build7.pack(fill="x", padx=20, pady=8)
+
+        # ── Progress ──────────────────────────────────────────────────────────
+        self.progress_bar7 = ctk.CTkProgressBar(tab)
+        self.progress_bar7.pack(fill="x", padx=20, pady=(0, 4))
+        self.progress_bar7.set(0)
+
+        self.status_label7 = ctk.CTkLabel(
+            tab, text="Sẵn sàng. Chọn các file rồi nhấn Tạo Draft.",
+            font=ctk.CTkFont(size=11), text_color="gray")
+        self.status_label7.pack(anchor="w", padx=22)
+
+        # ── Log area ──────────────────────────────────────────────────────────
+        self.log_box7 = ctk.CTkTextbox(tab, height=220, font=ctk.CTkFont(family="Consolas", size=11))
+        self.log_box7.pack(fill="both", expand=True, padx=20, pady=(4, 16))
+        self.log_box7.configure(state="disabled")
+
+    def append_log7(self, msg):
+        self.log_box7.configure(state="normal")
+        self.log_box7.insert("end", msg + "\n")
+        self.log_box7.see("end")
+        self.log_box7.configure(state="disabled")
+
+    def start_capcut_build(self):
+        """Validate inputs và khởi chạy pipeline trong thread riêng."""
+        video_path = self.tab7_video_entry.get().strip()
+        srt_path   = self.tab7_srt_entry.get().strip()
+        bgm_path   = self.tab7_bgm_entry.get().strip()
+        draft_dir  = self.tab7_draft_entry.get().strip()
+
+        errors = []
+        if not video_path or not os.path.exists(video_path):
+            errors.append("• Chưa chọn file video hợp lệ")
+        if not srt_path or not os.path.exists(srt_path):
+            errors.append("• Chưa chọn file SRT hợp lệ")
+        if not bgm_path or not os.path.exists(bgm_path):
+            errors.append("• Chưa chọn file nhạc nền hợp lệ")
+        if not draft_dir:
+            errors.append("• Chưa chọn thư mục CapCut Draft (nhấn 🔍Auto hoặc chọn thủ công)")
+        elif not os.path.isdir(draft_dir):
+            errors.append(f"• Thư mục Draft không tồn tại:\n  {draft_dir}")
+
+        if errors:
+            messagebox.showerror("Thiếu thông tin", "\n".join(errors))
+            return
+
+        self.btn_build7.configure(state="disabled")
+        self.progress_bar7.set(0)
+        self.log_box7.configure(state="normal")
+        self.log_box7.delete("1.0", "end")
+        self.log_box7.configure(state="disabled")
+        self.status_label7.configure(text="Đang xử lý...")
+
+        threading.Thread(
+            target=self.process_capcut_reup,
+            args=(video_path, srt_path, bgm_path, draft_dir),
+            daemon=True
+        ).start()
+
+    def process_capcut_reup(self, video_path, srt_path, bgm_path, draft_dir):
+        """Pipeline chính chạy trong background thread."""
+        try:
+            from capcut_helper import build_capcut_draft
+
+            capcut_api_dir = os.path.join(APP_DIR, "capcut_api")
+            if not os.path.isdir(capcut_api_dir):
+                self.after(0, lambda: messagebox.showerror(
+                    "Thiếu CapCutAPI",
+                    f"Không tìm thấy thư mục capcut_api tại:\n{capcut_api_dir}\n\n"
+                    "Hãy chạy lệnh trong thư mục AudioTool:\n"
+                    "  git clone https://github.com/ashreo/CapCutAPI.git capcut_api"
+                ))
+                return
+
+            def log(msg):
+                self.after(0, lambda m=msg: self.append_log7(m))
+
+            def prog(v):
+                self.after(0, lambda p=v: self.progress_bar7.set(p))
+                self.after(0, lambda p=v: self.status_label7.configure(
+                    text=f"Đang xử lý... {int(p * 100)}%"))
+
+            build_capcut_draft(
+                video_path     = video_path,
+                srt_path       = srt_path,
+                audio_path     = bgm_path,
+                draft_folder   = draft_dir,
+                capcut_api_dir = capcut_api_dir,
+                log_callback   = log,
+                progress_callback = prog,
+            )
+
+            self.after(0, lambda: self.status_label7.configure(text="✅ Hoàn tất!"))
+            self.after(0, lambda: messagebox.showinfo(
+                "Thành công 🎉",
+                "CapCut Draft đã tạo thành công!\n\n"
+                "Mở CapCut → 'Draft của tôi' → Tìm draft mới nhất → Export."
+            ))
+
+        except Exception as e:
+            err_msg = str(e)
+            self.after(0, lambda m=err_msg: self.append_log7(f"\n[LỖI] {m}"))
+            self.after(0, lambda: self.status_label7.configure(text="❌ Có lỗi xảy ra!"))
+            self.after(0, lambda m=err_msg: messagebox.showerror("Lỗi CapCut Reup", m))
+        finally:
+            self.after(0, lambda: self.btn_build7.configure(state="normal"))
+
 
 if __name__ == "__main__":
     app = App()
