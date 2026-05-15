@@ -1529,14 +1529,19 @@ KỊCH BẢN PHIM:
                 w     = max(1, min(w, vid_w - x))
                 h_box = max(1, min(h_box, vid_h - y))
 
-                self.append_log5(f"   → Làm mờ vùng ROI sau clamp: ({w}x{h_box} tại {x},{y}) trên frame {vid_w}x{vid_h}")
+                self.append_log5(f"   → Làm mờ vùng ROI: ({w}x{h_box} tại {x},{y}) trên frame {vid_w}x{vid_h}")
 
-                # Blur vùng phụ đề trước, rồi hflip toàn bộ frame
+                # Dùng -vf chain đơn giản, tương thích mọi FFmpeg version:
+                # Bước 1: boxblur vùng ROI bằng cách split/overlay với format chuẩn yuv420p
+                # Bước 2: hflip toàn frame
                 filter_str = (
-                    f"[0:v]split[base][blur_in];"
-                    f"[blur_in]crop={w}:{h_box}:{x}:{y},boxblur=20:5[blurred];"
-                    f"[base][blurred]overlay={x}:{y}[overlaid];"
-                    f"[overlaid]hflip[v]"
+                    f"[0:v]split=2[main][ref];"
+                    f"[ref]crop=w={w}:h={h_box}:x={x}:y={y},"
+                    f"boxblur=luma_radius=15:luma_power=3,"
+                    f"format=yuv420p[blurred];"
+                    f"[main]format=yuv420p[mainf];"
+                    f"[mainf][blurred]overlay=x={x}:y={y},"
+                    f"hflip[v]"
                 )
             else:
                 filter_str = "[0:v]hflip[v]"
