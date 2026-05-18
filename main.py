@@ -641,7 +641,8 @@ Kịch bản:
                 messagebox.showerror("Lỗi", f"Không thể đọc file SRT:\n{str(e)}")
 
     def load_video(self):
-        path = filedialog.askopenfilename(filetypes=[("Media Files", "*.mp4 *.avi *.mkv *.mp3 *.wav")])
+        # Đổi dấu cách thành dấu chấm phẩy để Windows nhận diện đúng nhiều đuôi file cùng lúc
+        path = filedialog.askopenfilename(filetypes=[("Media Files", "*.mp4;*.avi;*.mkv;*.mp3;*.wav")])
         if path:
             self.video_path = path
             self.vid_lbl.configure(text=os.path.basename(path))
