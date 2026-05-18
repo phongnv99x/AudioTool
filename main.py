@@ -131,7 +131,7 @@ class App(ctk.CTk):
         self.btn_load_vid1 = ctk.CTkButton(self.btn_frame, text="1.5. Chọn Media (Tùy chọn)", command=self.load_media1)
         self.btn_load_vid1.pack(side="left", padx=5)
 
-        self.vid_lbl1 = ctk.CTkLabel(self.btn_frame, text="")
+        self.vid_lbl1 = ctk.CTkLabel(self.btn_frame, text="Chưa chọn media", width=200, anchor="w")
         self.vid_lbl1.pack(side="left", padx=5)
 
         self.btn_translate = ctk.CTkButton(self.btn_frame, text="2. Bắt đầu Dịch", command=self.start_translation, state="disabled")
@@ -207,7 +207,14 @@ class App(ctk.CTk):
         path = filedialog.askopenfilename(filetypes=[("Media Files", "*.mp4 *.avi *.mkv *.mp3 *.wav")])
         if path:
             self.video_path1 = path
-            self.vid_lbl1.configure(text=os.path.basename(path))
+            filename = os.path.basename(path)
+            if len(filename) > 25:
+                name, ext = os.path.splitext(filename)
+                trunc_len = max(5, 25 - len(ext) - 3)
+                display_name = name[:trunc_len] + "..." + ext
+            else:
+                display_name = filename
+            self.vid_lbl1.configure(text=display_name)
 
     def on_language_changed(self, selected):
         lang_map = {"🇻🇳 Việt": "vi", "🇯🇵 Nhật": "ja", "🇰🇷 Hàn": "ko"}
@@ -613,7 +620,7 @@ Kịch bản:
         self.btn_load_vid = ctk.CTkButton(self.btn_frame2, text="2. Chọn Video/Audio Gốc", command=self.load_video)
         self.btn_load_vid.pack(side="left", padx=5)
 
-        self.vid_lbl = ctk.CTkLabel(self.btn_frame2, text="Chưa chọn file")
+        self.vid_lbl = ctk.CTkLabel(self.btn_frame2, text="Chưa chọn file", width=200, anchor="w")
         self.vid_lbl.pack(side="left", padx=5)
 
         self.btn_suggest = ctk.CTkButton(self.tab2, text="3. Phân tích Video & Tải Nhạc", command=self.start_music_pipeline)
@@ -645,7 +652,14 @@ Kịch bản:
         path = filedialog.askopenfilename(filetypes=[("Media Files", "*.mp4;*.avi;*.mkv;*.mp3;*.wav")])
         if path:
             self.video_path = path
-            self.vid_lbl.configure(text=os.path.basename(path))
+            filename = os.path.basename(path)
+            if len(filename) > 25:
+                name, ext = os.path.splitext(filename)
+                trunc_len = max(5, 25 - len(ext) - 3)
+                display_name = name[:trunc_len] + "..." + ext
+            else:
+                display_name = filename
+            self.vid_lbl.configure(text=display_name)
 
     def start_music_pipeline(self):
         subs_to_use = self.music_subs if self.music_subs else self.translated_subs
@@ -1104,7 +1118,7 @@ Kịch bản thoại (từ đầu đến cuối):
         self.btn_load_img = ctk.CTkButton(self.btn_frame3, text="1. Tải Thumbnail Mẫu (Tùy chọn)", command=self.load_thumbnail)
         self.btn_load_img.pack(side="left", padx=5)
         
-        self.img_label = ctk.CTkLabel(self.btn_frame3, text="Chưa chọn ảnh")
+        self.img_label = ctk.CTkLabel(self.btn_frame3, text="Chưa chọn ảnh", width=200, anchor="w")
         self.img_label.pack(side="left", padx=10)
 
         self.btn_seo = ctk.CTkButton(self.btn_frame3, text="2. Bắt đầu tạo SEO", command=self.start_seo)
@@ -1120,7 +1134,14 @@ Kịch bản thoại (từ đầu đến cuối):
         file_path = filedialog.askopenfilename(filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.webp")])
         if file_path:
             self.ref_image_path = file_path
-            self.img_label.configure(text=os.path.basename(file_path))
+            filename = os.path.basename(file_path)
+            if len(filename) > 25:
+                name, ext = os.path.splitext(filename)
+                trunc_len = max(5, 25 - len(ext) - 3)
+                display_name = name[:trunc_len] + "..." + ext
+            else:
+                display_name = filename
+            self.img_label.configure(text=display_name)
             
     def start_seo(self):
         if not self.gemini_api_key:
@@ -1353,12 +1374,12 @@ Kịch bản thoại:
 
         self.btn_load_vid4 = ctk.CTkButton(self.btn_frame4, text="1. Chọn Video Gốc", command=self.load_video4)
         self.btn_load_vid4.pack(side="left", padx=5)
-        self.vid_lbl4 = ctk.CTkLabel(self.btn_frame4, text="Chưa chọn video")
+        self.vid_lbl4 = ctk.CTkLabel(self.btn_frame4, text="Chưa chọn video", width=200, anchor="w")
         self.vid_lbl4.pack(side="left", padx=5)
 
         self.btn_load_srt4 = ctk.CTkButton(self.btn_frame4, text="2. Chọn SRT (Tiếng Việt)", command=self.load_srt4)
         self.btn_load_srt4.pack(side="left", padx=5)
-        self.srt_lbl4 = ctk.CTkLabel(self.btn_frame4, text="Chưa chọn SRT")
+        self.srt_lbl4 = ctk.CTkLabel(self.btn_frame4, text="Chưa chọn SRT", width=200, anchor="w")
         self.srt_lbl4.pack(side="left", padx=5)
 
         self.btn_create_intro = ctk.CTkButton(self.btn_frame4, text="3. TẠO INTRO 30S", command=self.start_intro, state="disabled")
@@ -1380,14 +1401,28 @@ Kịch bản thoại:
         path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4 *.mkv *.avi")])
         if path:
             self.video_path4 = path
-            self.vid_lbl4.configure(text=os.path.basename(path))
+            filename = os.path.basename(path)
+            if len(filename) > 25:
+                name, ext = os.path.splitext(filename)
+                trunc_len = max(5, 25 - len(ext) - 3)
+                display_name = name[:trunc_len] + "..." + ext
+            else:
+                display_name = filename
+            self.vid_lbl4.configure(text=display_name)
             self.check_intro_ready()
 
     def load_srt4(self):
         path = filedialog.askopenfilename(filetypes=[("SRT Files", "*.srt")])
         if path:
             self.srt_path4 = path
-            self.srt_lbl4.configure(text=os.path.basename(path))
+            filename = os.path.basename(path)
+            if len(filename) > 25:
+                name, ext = os.path.splitext(filename)
+                trunc_len = max(5, 25 - len(ext) - 3)
+                display_name = name[:trunc_len] + "..." + ext
+            else:
+                display_name = filename
+            self.srt_lbl4.configure(text=display_name)
             self.check_intro_ready()
 
     def check_intro_ready(self):
