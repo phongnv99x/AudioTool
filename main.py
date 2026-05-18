@@ -2375,18 +2375,21 @@ KỊCH BẢN PHIM:
                 self.after(0, lambda p=v: self.status_label7.configure(
                     text=f"Đang xử lý... {int(p * 100)}%"))
 
-            # --- Pre-processing: Blurring Multiple ROIs ---
-            if getattr(self, 'tab7_rois', None):
-                log(f"🎬 Đang làm mờ {len(self.tab7_rois)} vùng đã chọn bằng FFmpeg (gblur)...")
-                prog(0.1)
-                import subprocess, cv2
-                
-                cap = cv2.VideoCapture(video_path)
-                vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                cap.release()
+            # --- Pre-processing: Blurring ROI & Screen Record Simulation (Anti-Copyright) ---
+            import subprocess, cv2
+            log("🎬 Đang chạy bộ lọc Giả lập Quay màn hình (Anti-Copyright)...")
+            prog(0.1)
+            
+            cap = cv2.VideoCapture(video_path)
+            vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            cap.release()
 
-                filter_chains = []
+            filter_chains = []
+            
+            # Nếu có ROI thì ghép thêm filter blur trước
+            if getattr(self, 'tab7_rois', None):
+                log(f"   → Có {len(self.tab7_rois)} vùng ROI cần làm mờ.")
                 splits = len(self.tab7_rois) + 1
                 filter_chains.append(f"[0:v]split={splits}[main]" + "".join([f"[ref{i}]" for i in range(len(self.tab7_rois))]))
                 
@@ -2403,36 +2406,43 @@ KỊCH BẢN PHIM:
                     w = max(2, w)
                     h_box = max(2, h_box)
                     
-                    # Gán lại cho an toàn ở bước overlay
                     self.tab7_rois[i] = (x, y, w, h_box)
                     filter_chains.append(f"[ref{i}]crop=w={w}:h={h_box}:x={x}:y={y},gblur=sigma=20,format=yuv420p[b{i}]")
                 
                 filter_chains.append("[main]format=yuv420p[mainf]")
                 last_out = "[mainf]"
                 for i, (x, y, w, h_box) in enumerate(self.tab7_rois):
-                    out_name = f"[tmp{i}]" if i < len(self.tab7_rois) - 1 else "[v]"
+                    out_name = f"[tmp{i}]" if i < len(self.tab7_rois) - 1 else "[blurred]"
                     filter_chains.append(f"{last_out}[b{i}]overlay=x={x}:y={y}{out_name}")
                     last_out = out_name
                     
-                filter_str = ";".join(filter_chains)
-                blurred_vid_path = video_path.rsplit('.', 1)[0] + "_blurred_reup.mp4"
+                # Nối tiếp bộ lọc giả lập vào sau luồng [blurred]
+                filter_chains.append("[blurred]scale=iw:ih-1,scale=iw:ih+1,fps=30,noise=alls=1:allf=t,format=yuv420p[v]")
+            else:
+                log("   → Không có vùng ROI. Chỉ áp dụng giả lập quay màn hình.")
+                # Chạy trực tiếp từ luồng [0:v]
+                filter_chains.append("[0:v]scale=iw:ih-1,scale=iw:ih+1,fps=30,noise=alls=1:allf=t,format=yuv420p[v]")
                 
-                cmd = [
-                    "ffmpeg", "-y", "-i", video_path,
-                    "-filter_complex", filter_str,
-                    "-map", "[v]", "-map", "0:a?",
-                    "-c:v", "libx264", "-preset", "fast", "-crf", "23",
-                    "-c:a", "copy",
-                    blurred_vid_path
-                ]
-                
-                proc = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True, encoding='utf-8')
-                if proc.returncode != 0:
-                    raise Exception(f"Lỗi FFmpeg khi làm mờ nhiều vùng:\n{proc.stderr[-500:]}")
-                
-                video_path = blurred_vid_path
-                log(f"✅ Đã làm mờ xong, lưu tại: {os.path.basename(blurred_vid_path)}")
-                prog(0.2)
+            filter_str = ";".join(filter_chains)
+            processed_vid_path = video_path.rsplit('.', 1)[0] + "_screen_record.mp4"
+            
+            cmd = [
+                "ffmpeg", "-y", "-i", video_path,
+                "-filter_complex", filter_str,
+                "-map", "[v]",
+                "-c:v", "libx264", "-preset", "fast", "-crf", "23", "-g", "60",
+                "-an",  # Bỏ audio vì sau đó CapCut sẽ ghép nhạc mới
+                processed_vid_path
+            ]
+            
+            proc = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True, encoding='utf-8')
+            if proc.returncode != 0:
+                raise Exception(f"Lỗi FFmpeg khi giả lập quay màn hình:\n{proc.stderr[-500:]}")
+            
+            video_path = processed_vid_path
+            log(f"✅ Đã xử lý Anti-Copyright xong, lưu tại: {os.path.basename(processed_vid_path)}")
+            prog(0.2)
+
 
             build_capcut_draft(
                 video_path     = video_path,
