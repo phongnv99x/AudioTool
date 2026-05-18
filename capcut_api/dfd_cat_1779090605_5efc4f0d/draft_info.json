@@ -1,0 +1,3777 @@
+{
+    "canvas_config": {
+        "width": 1440,
+        "height": 1080,
+        "ratio": "original"
+    },
+    "color_space": 0,
+    "config": {
+        "adjust_max_index": 1,
+        "attachment_info": [],
+        "combination_max_index": 1,
+        "export_range": null,
+        "extract_audio_last_index": 1,
+        "lyrics_recognition_id": "",
+        "lyrics_sync": true,
+        "lyrics_taskinfo": [],
+        "maintrack_adsorb": true,
+        "material_save_mode": 0,
+        "multi_language_current": "none",
+        "multi_language_list": [],
+        "multi_language_main": "none",
+        "multi_language_mode": "none",
+        "original_sound_last_index": 1,
+        "record_audio_last_index": 1,
+        "sticker_max_index": 1,
+        "subtitle_keywords_config": null,
+        "subtitle_recognition_id": "",
+        "subtitle_sync": true,
+        "subtitle_taskinfo": [],
+        "system_font_list": [],
+        "video_mute": false,
+        "zoom_info_params": null
+    },
+    "cover": null,
+    "create_time": 0,
+    "duration": 53766000,
+    "extra_info": null,
+    "fps": 30,
+    "free_render_index_mode_on": false,
+    "group_container": null,
+    "id": "91E08AC5-22FB-47e2-9AA0-7DC300FAEA2B",
+    "keyframe_graph_list": [],
+    "keyframes": {
+        "adjusts": [],
+        "audios": [],
+        "effects": [],
+        "filters": [],
+        "handwrites": [],
+        "stickers": [],
+        "texts": [],
+        "videos": []
+    },
+    "last_modified_platform": {
+        "app_id": 359289,
+        "app_source": "cc",
+        "app_version": "6.5.0",
+        "device_id": "c4ca4238a0b923820dcc509a6f75849b",
+        "hard_disk_id": "307563e0192a94465c0e927fbc482942",
+        "mac_address": "c3371f2d4fb02791c067ce44d8fb4ed5",
+        "os": "mac",
+        "os_version": "15.5"
+    },
+    "materials": {
+        "ai_translates": [],
+        "audio_balances": [],
+        "audio_effects": [],
+        "audio_fades": [],
+        "audio_track_indexes": [],
+        "audios": [
+            {
+                "app_id": 0,
+                "category_id": "",
+                "category_name": "local",
+                "check_flag": 1,
+                "copyright_limit_type": "none",
+                "duration": 173625011,
+                "effect_id": "",
+                "formula_id": "",
+                "id": "9d478d287d3d344aa5f8fbdd9bb29749",
+                "intensifies_path": "",
+                "is_ai_clone_tone": false,
+                "is_text_edit_overdub": false,
+                "is_ugc": false,
+                "local_material_id": "9d478d287d3d344aa5f8fbdd9bb29749",
+                "music_id": "9d478d287d3d344aa5f8fbdd9bb29749",
+                "name": "audio_dfe890c11f494243.mp3",
+                "path": "C:\\Users\\HaiNP\\AppData\\Local\\CapCut\\User Data\\Projects\\com.lveditor.draft\\dfd_cat_1779090605_5efc4f0d\\assets\\audio\\audio_dfe890c11f494243.mp3",
+                "remote_url": "E:\\Tool\\AudioTool\\scratch\\..\\Downloads\\Kho_nhac\\buon\\A Distant Call - Dan _Lebo_ Lebowitz, Tone Seeker.mp3",
+                "query": "",
+                "request_id": "",
+                "resource_id": "",
+                "search_id": "",
+                "source_from": "",
+                "source_platform": 0,
+                "team_id": "",
+                "text_id": "",
+                "tone_category_id": "",
+                "tone_category_name": "",
+                "tone_effect_id": "",
+                "tone_effect_name": "",
+                "tone_platform": "",
+                "tone_second_category_id": "",
+                "tone_second_category_name": "",
+                "tone_speaker": "",
+                "tone_type": "",
+                "type": "extract_music",
+                "video_id": "",
+                "wave_points": []
+            }
+        ],
+        "beats": [],
+        "canvases": [],
+        "chromas": [],
+        "color_curves": [],
+        "digital_humans": [],
+        "drafts": [],
+        "effects": [],
+        "flowers": [],
+        "green_screens": [],
+        "handwrites": [],
+        "hsl": [],
+        "images": [],
+        "log_color_wheels": [],
+        "loudnesses": [],
+        "manual_deformations": [],
+        "material_animations": [],
+        "material_colors": [],
+        "multi_language_refs": [],
+        "placeholders": [],
+        "plugin_effects": [],
+        "primary_color_wheels": [],
+        "realtime_denoises": [],
+        "shapes": [],
+        "smart_crops": [],
+        "smart_relights": [],
+        "sound_channel_mappings": [],
+        "speeds": [
+            {
+                "curve_speed": null,
+                "id": "57bae8c7f7e649878cb3f79c8d2efa7b",
+                "mode": 0,
+                "speed": 1.0,
+                "type": "speed"
+            },
+            {
+                "curve_speed": null,
+                "id": "7199e39fc20d418ea98aee92f5d3e102",
+                "mode": 0,
+                "speed": 1.0,
+                "type": "speed"
+            }
+        ],
+        "stickers": [],
+        "tail_leaders": [],
+        "text_templates": [],
+        "texts": [
+            {
+                "id": "8d114a226ff943379100cf8b6592547f",
+                "content": "{\"styles\": [{\"fill\": {\"alpha\": 1.0, \"content\": {\"render_type\": \"solid\", \"solid\": {\"alpha\": 1.0, \"color\": [1.0, 0.9725490196078431, 0.9058823529411765]}}}, \"range\": [0, 57], \"size\": 8.0, \"bold\": true, \"italic\": false, \"underline\": false, \"strokes\": [{\"content\": {\"solid\": {\"alpha\": 1.0, \"color\": [0.23921568627450981, 0.10196078431372549, 0.0]}}, \"width\": 0.012}]}], \"text\": \"Tiêu Viêm bước ra khỏi cổng thành, ánh mắt lạnh như băng.\"}",
+                "typesetting": 0,
+                "alignment": 1,
+                "letter_spacing": 0.0,
+                "line_spacing": 0.02,
+                "line_feed": 1,
+                "line_max_width": 0.82,
+                "force_apply_line_max_width": false,
+                "check_flag": 31,
+                "type": "text",
+                "fixed_width": 1344,
+                "fixed_height": -1,
+                "background_style": 0,
+                "background_color": "#1A0A00",
+                "background_alpha": 0.55,
+                "background_round_radius": 0.0,
+                "background_height": 0.14,
+                "background_width": 0.14,
+                "background_horizontal_offset": 0.0,
+                "background_vertical_offset": 0.0
+            },
+            {
+                "id": "9df0e1814a674dc680e5bed223d50f9c",
+                "content": "{\"styles\": [{\"fill\": {\"alpha\": 1.0, \"content\": {\"render_type\": \"solid\", \"solid\": {\"alpha\": 1.0, \"color\": [1.0, 0.9725490196078431, 0.9058823529411765]}}}, \"range\": [0, 64], \"size\": 8.0, \"bold\": true, \"italic\": false, \"underline\": false, \"strokes\": [{\"content\": {\"solid\": {\"alpha\": 1.0, \"color\": [0.23921568627450981, 0.10196078431372549, 0.0]}}, \"width\": 0.012}]}], \"text\": \"Hàn Lập đứng yên, tay nắm chặt kiếm, chờ đợi trận chiến sinh tử.\"}",
+                "typesetting": 0,
+                "alignment": 1,
+                "letter_spacing": 0.0,
+                "line_spacing": 0.02,
+                "line_feed": 1,
+                "line_max_width": 0.82,
+                "force_apply_line_max_width": false,
+                "check_flag": 31,
+                "type": "text",
+                "fixed_width": 1344,
+                "fixed_height": -1,
+                "background_style": 0,
+                "background_color": "#1A0A00",
+                "background_alpha": 0.55,
+                "background_round_radius": 0.0,
+                "background_height": 0.14,
+                "background_width": 0.14,
+                "background_horizontal_offset": 0.0,
+                "background_vertical_offset": 0.0
+            },
+            {
+                "id": "2ef1f1eb63ad40c2b0d44267709dea43",
+                "content": "{\"styles\": [{\"fill\": {\"alpha\": 1.0, \"content\": {\"render_type\": \"solid\", \"solid\": {\"alpha\": 1.0, \"color\": [1.0, 0.9725490196078431, 0.9058823529411765]}}}, \"range\": [0, 49], \"size\": 8.0, \"bold\": true, \"italic\": false, \"underline\": false, \"strokes\": [{\"content\": {\"solid\": {\"alpha\": 1.0, \"color\": [0.23921568627450981, 0.10196078431372549, 0.0]}}, \"width\": 0.012}]}], \"text\": \"Nô tỳ xin bẩm, Tam tiểu thư đã quay về phủ rồi ạ!\"}",
+                "typesetting": 0,
+                "alignment": 1,
+                "letter_spacing": 0.0,
+                "line_spacing": 0.02,
+                "line_feed": 1,
+                "line_max_width": 0.82,
+                "force_apply_line_max_width": false,
+                "check_flag": 31,
+                "type": "text",
+                "fixed_width": 1344,
+                "fixed_height": -1,
+                "background_style": 0,
+                "background_color": "#1A0A00",
+                "background_alpha": 0.55,
+                "background_round_radius": 0.0,
+                "background_height": 0.14,
+                "background_width": 0.14,
+                "background_horizontal_offset": 0.0,
+                "background_vertical_offset": 0.0
+            }
+        ],
+        "time_marks": [],
+        "transitions": [],
+        "video_effects": [],
+        "video_trackings": [],
+        "videos": [
+            {
+                "audio_fade": null,
+                "category_id": "",
+                "category_name": "local",
+                "check_flag": 63487,
+                "crop": {
+                    "upper_left_x": 0.0,
+                    "upper_left_y": 0.0,
+                    "upper_right_x": 1.0,
+                    "upper_right_y": 0.0,
+                    "lower_left_x": 0.0,
+                    "lower_left_y": 1.0,
+                    "lower_right_x": 1.0,
+                    "lower_right_y": 1.0
+                },
+                "crop_ratio": "free",
+                "crop_scale": 1.0,
+                "duration": 53766000,
+                "height": 1080,
+                "id": "0076e6f474723046aae11171f278aa1f",
+                "local_material_id": "",
+                "material_id": "0076e6f474723046aae11171f278aa1f",
+                "material_name": "video_995ff631e9f55768.mp4",
+                "media_path": "",
+                "path": "C:\\Users\\HaiNP\\AppData\\Local\\CapCut\\User Data\\Projects\\com.lveditor.draft\\dfd_cat_1779090605_5efc4f0d\\assets\\video\\video_995ff631e9f55768.mp4",
+                "remote_url": "E:\\Tool\\AudioTool\\scratch\\..\\scratch\\video-subtitle-extractor\\test\\test_cn.mp4",
+                "type": "video",
+                "width": 1440
+            }
+        ],
+        "vocal_beautifys": [],
+        "vocal_separations": [],
+        "common_mask": []
+    },
+    "mutable_config": null,
+    "name": "",
+    "new_version": "110.0.0",
+    "relationships": [],
+    "render_index_track_mode_on": false,
+    "retouch_cover": null,
+    "source": "default",
+    "static_cover_image_path": "",
+    "time_marks": null,
+    "tracks": [
+        {
+            "attribute": 0,
+            "flag": 0,
+            "id": "35c00b0e5e974061af3a4f30c19016d0",
+            "is_default_name": false,
+            "name": "video",
+            "segments": [],
+            "type": "video"
+        },
+        {
+            "attribute": 0,
+            "flag": 0,
+            "id": "f43344cd32ad46dabd1f5cb54a601cf9",
+            "is_default_name": false,
+            "name": "main_video",
+            "segments": [
+                {
+                    "enable_adjust": true,
+                    "enable_color_correct_adjust": false,
+                    "enable_color_curves": true,
+                    "enable_color_match_adjust": false,
+                    "enable_color_wheels": true,
+                    "enable_lut": true,
+                    "enable_smart_color_adjust": false,
+                    "last_nonzero_volume": 1.0,
+                    "reverse": false,
+                    "track_attribute": 0,
+                    "track_render_index": 0,
+                    "visible": true,
+                    "id": "0f451ae23ff24ca7bd1329d5d5cc44e7",
+                    "material_id": "0076e6f474723046aae11171f278aa1f",
+                    "target_timerange": {
+                        "start": 0,
+                        "duration": 53766000
+                    },
+                    "common_keyframes": [
+                        {
+                            "id": "05c1b5870576464a82cdb71518ad276c",
+                            "keyframe_list": [
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fbde94f39bfb4b378bfb964c64aa9ef8",
+                                    "time_offset": 766000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "84dd621e4e4a478eacda8dba5496c28f",
+                                    "time_offset": 1335000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "8f2dcf65142748debb7579e52f84febe",
+                                    "time_offset": 1904000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "561ce04f62fa4216bf5e429e9ee09666",
+                                    "time_offset": 2461000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c85631d115494f5196e0b3b97f203ed4",
+                                    "time_offset": 3030000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "702aa02fa5364f4ca0aa471c1fdb861a",
+                                    "time_offset": 3599000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "913f8f6eb96049a1a037dc61feb12336",
+                                    "time_offset": 4331000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "8d2be867c75848bab85f0feb9bc56dc7",
+                                    "time_offset": 4899000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "25ba237aa1fd41c5a597114a81d22e45",
+                                    "time_offset": 5468000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c7adefc823cd4b7999afbe8154df0caa",
+                                    "time_offset": 6026000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "9de957a21b914ba0ba95c198604f361e",
+                                    "time_offset": 6769000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "ebaeab2bdd424beb8811ebc50d2cb31b",
+                                    "time_offset": 7338000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "978664ab4d004bfba833bf52bc66990c",
+                                    "time_offset": 7906000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "4ecbd102c1a940889533972bfc5c24d0",
+                                    "time_offset": 8464000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "a4dc9cac1a50472c8b9afe04e9f9ec07",
+                                    "time_offset": 9021000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "8fcb603455c04a1cafc514f5c0894f1b",
+                                    "time_offset": 9590000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e05efba594104094b6ed03847c90d51f",
+                                    "time_offset": 10147000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "935e463147ef470ebb0a74f452432f79",
+                                    "time_offset": 10623000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "9bec2497ecc941b3a9d3fe5fe86b5058",
+                                    "time_offset": 11099000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "88e9efe621434980812f0968cf04ca0d",
+                                    "time_offset": 11645000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "4f59377f63c94c92bd2acebeb5fac6e6",
+                                    "time_offset": 12225000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "06409a0f5eba43d08f8f19ef583d7328",
+                                    "time_offset": 12771000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "621ebb916c884673896432dc743c0577",
+                                    "time_offset": 13340000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "175d06b58de144e1a7b51ab36d6726c0",
+                                    "time_offset": 13897000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "a0af65e31810453aa826a18e6995a1f3",
+                                    "time_offset": 14466000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "3e37fcd5cb8d4628a0681d459f83c0ad",
+                                    "time_offset": 15023000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "b601903fe4784b08836cd4a7040a0182",
+                                    "time_offset": 15592000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "1fbde4b7b4f0476a80a1c7092df98cf5",
+                                    "time_offset": 16335000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "4431038fcf18497cbf6a648a4c0ef66b",
+                                    "time_offset": 16904000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "59982763bdd94bc3bd8e45353c95154f",
+                                    "time_offset": 17473000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "7b1b3df65a9c4138b912919acad01114",
+                                    "time_offset": 18030000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "8fe3579b41484a72a06beaffaa1ae792",
+                                    "time_offset": 18599000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "0d688140bf2d4102b1e3c883b30bb817",
+                                    "time_offset": 19331000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "30fb64d891fd48419cfda61a79316093",
+                                    "time_offset": 19900000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fa8ffde8eba34963b8c631fa54fcb437",
+                                    "time_offset": 20468000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "050589c9c3174a0dadf14ff2028a82e3",
+                                    "time_offset": 21026000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "138df40d52164c39b67a6d564dca233d",
+                                    "time_offset": 21606000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "f431495bf4184f10ad818964cfa15aa1",
+                                    "time_offset": 22152000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "ad51016f5aef49a686e237d229f7dd6f",
+                                    "time_offset": 22721000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "b8baa99cfb6b44209812f4279c73990f",
+                                    "time_offset": 23278000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "dc894f1373824b9c8d8af6c16b6db205",
+                                    "time_offset": 23847000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "2d816485dc4248649bce8afda1c08783",
+                                    "time_offset": 24404000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "744bf4907ca04ef68e0e4936a0602c65",
+                                    "time_offset": 24961000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "88652435f47644d98f0c8bc90396d949",
+                                    "time_offset": 25542000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "b3104d9f473d402cb5d68d13b688ce75",
+                                    "time_offset": 26099000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "babdb2dcf28e4e48a168bace208fd780",
+                                    "time_offset": 26645000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "3e4106c881044010b0c344c279a36d2b",
+                                    "time_offset": 27225000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "bb45bda143f14898b7f566368833c8e0",
+                                    "time_offset": 27771000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "5d09620dff084c83896af628dfe2deac",
+                                    "time_offset": 28340000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "d0ec9cdd36e04f4aa5dadc9a2d67f87f",
+                                    "time_offset": 28897000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "2dc26fddc0c2461889bd34546f428e3b",
+                                    "time_offset": 29466000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "703cf4d1beba4b1fa7a37452d9751151",
+                                    "time_offset": 30023000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "37148f66fe4440968652a67df2796c8f",
+                                    "time_offset": 30581000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e1f70dcbdb4d45d9955c926992945534",
+                                    "time_offset": 31150000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "2abbb54111664fa99b775d52c28e6053",
+                                    "time_offset": 31718000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "765ed0f5e2864db28f75128e48c188fa",
+                                    "time_offset": 32276000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "246c683c40034397886f58780e5b34c8",
+                                    "time_offset": 32856000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "0a86c13cea8042ca958860feb3fa11bf",
+                                    "time_offset": 33308999,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "f3c0418dcd99443cb9876e0d5951c2ce",
+                                    "time_offset": 33773000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "50ab6bd83e7e41758f12d0abdc989582",
+                                    "time_offset": 34331000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "965a8f329a1941caa885066dbd078978",
+                                    "time_offset": 34900000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "762a44b78d6d406ebd4a313d39dddd67",
+                                    "time_offset": 35468000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c9082b5716e54751985600833d964020",
+                                    "time_offset": 36026000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "78742f69bdd543cda8a7ccc71e53ea12",
+                                    "time_offset": 36595000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "ae47fde7af5a4c0b9811a96ed3f03d6b",
+                                    "time_offset": 37152000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "56946fd5ca07402ebe375e9812cb3139",
+                                    "time_offset": 37895000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "b67cb3d2dcc44bb2a08cf78a1bdc3bc9",
+                                    "time_offset": 38464000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fcb83fc840b64ff38cae101a7e66f7fa",
+                                    "time_offset": 39021000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "262f49363f334e1585deb89a0e79553f",
+                                    "time_offset": 39590000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "4a17274c9d7349ccb4c109856385df1a",
+                                    "time_offset": 40147000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "3157f1b9120c427b891e7a139c404474",
+                                    "time_offset": 40728000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "12f000294c5e464a93fc50220248eae3",
+                                    "time_offset": 41273000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "cebf0155a45642a0abb30e7c9f4327ea",
+                                    "time_offset": 41842000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "41a316b2a99b4e8ab6005b9f3ef9298c",
+                                    "time_offset": 42411000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "375f7ee733aa41deb1c8c575c880b5f3",
+                                    "time_offset": 42969000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "06815e4e52d04170909f435ab7bd8f4e",
+                                    "time_offset": 43537000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "da47ee9456364b36bd7ba1c1422340ef",
+                                    "time_offset": 44095000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "315aa7d184bf4f028082f0c78af217c4",
+                                    "time_offset": 44652000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "0c9c61906d3d49bdad1b5e749f68b97b",
+                                    "time_offset": 45232000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "437449f2f41d43d099b5cbba47b3e5ac",
+                                    "time_offset": 45778000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "83a1f1714c764a7c8533354935043732",
+                                    "time_offset": 46335000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fe6f96e0d5434621b291323e63acf8da",
+                                    "time_offset": 46904000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "84dc522ca7914c6389a6a0120b8773b7",
+                                    "time_offset": 47473000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "4faa2d0860ab43e999c0453dc98fd836",
+                                    "time_offset": 48019000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "071b1d4af5174930b9b0ab70e954ae94",
+                                    "time_offset": 48599000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "79264f6238794492ba1ab5607c27e38d",
+                                    "time_offset": 49145000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "bf528e2c1eee49319ce25e596b3fce63",
+                                    "time_offset": 49714000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "f63eaa23a803429f947d2330c2b57042",
+                                    "time_offset": 50271000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e265b6d8a65f498d9c53b089f1d697d7",
+                                    "time_offset": 50840000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "4117f1861c9a4151b7e8decb8dfd0f98",
+                                    "time_offset": 51409000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "a1d3c37321f14f39bb144c53d0ba0fdf",
+                                    "time_offset": 51966000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "4d558d3df372429284d9229626f6b0b2",
+                                    "time_offset": 52547000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c84d1b73224543d69939b8b5e4532d4e",
+                                    "time_offset": 53092000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "7478afd927b14af7b944b493f97c0573",
+                                    "time_offset": 53650000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                }
+                            ],
+                            "material_id": "",
+                            "property_type": "KFTypeScaleX"
+                        },
+                        {
+                            "id": "292247326c3547b89ca3765dd7e75c71",
+                            "keyframe_list": [
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "7ba58ccbadeb4aac80d0385b052c4876",
+                                    "time_offset": 766000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "15d9f1a043214576803cb03233eae712",
+                                    "time_offset": 1335000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "a2cd243d81654b52a9de299671792280",
+                                    "time_offset": 1904000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c84a69ed29674aa980f8a82475ac090d",
+                                    "time_offset": 2461000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "b474cec2b691496ea698870164468688",
+                                    "time_offset": 3030000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "46ff54fd60364cf48d0efadb2d745884",
+                                    "time_offset": 3599000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "328aecb835e44d03939cb10702320135",
+                                    "time_offset": 4331000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "9bd8bb5ea818415ea5401c5ef7f402f6",
+                                    "time_offset": 4899000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "73ae379a09794a52b6809f308f02d9af",
+                                    "time_offset": 5468000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "114ea17f687a485ca8a8021cc24b7c7f",
+                                    "time_offset": 6026000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "d51b24af99d3415aa81fce02244dbcb4",
+                                    "time_offset": 6769000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "5b98a4cd80004183a79dcf3c686bb7c8",
+                                    "time_offset": 7338000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "309c26d32e244438ab0a55548b85dbd6",
+                                    "time_offset": 7906000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "d8025371024a4cef9fef6c0132e632b8",
+                                    "time_offset": 8464000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "1435d8184f6c4324bd90ab0ef2ca1da1",
+                                    "time_offset": 9021000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "2e4e4e60e72247c898a01b2e5a9913aa",
+                                    "time_offset": 9590000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e397bec605cc41f4ae2dde771b043749",
+                                    "time_offset": 10147000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "16afd678a70b4d54a30437f7a0814e80",
+                                    "time_offset": 10623000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "0a281bdfc2e044e59739e17b991db45c",
+                                    "time_offset": 11099000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "dabf3b4ec9554fdd8ba0a733859c0403",
+                                    "time_offset": 11645000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "103b027867134574a2a97a44adc8b35d",
+                                    "time_offset": 12225000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "ec41eac8da784e509238b4e150df548f",
+                                    "time_offset": 12771000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "a90721e976714f84bedb429895bbdb09",
+                                    "time_offset": 13340000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "d3b1b144a99e405ca67e881b4f311897",
+                                    "time_offset": 13897000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "b4debba5f8ee41e5b127b5b1d69ceaa9",
+                                    "time_offset": 14466000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "3adaf69f72554e83ba3a10baa0d622f0",
+                                    "time_offset": 15023000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c58719f1c35747d69bf5d87abed3c108",
+                                    "time_offset": 15592000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "d450a4ef87584427ad6d55d74be5a3d6",
+                                    "time_offset": 16335000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "096b3a6f8d5242ceba4b7c5a8086a6f8",
+                                    "time_offset": 16904000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "f351c2125cb443049d9f44e82821a9f2",
+                                    "time_offset": 17473000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c1d3ecbcfe54421598fc3f4ab6e5cde5",
+                                    "time_offset": 18030000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e46eb2f08d5e47de8d6bab8515ec810e",
+                                    "time_offset": 18599000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fc09e430c23640829adca8458732bc37",
+                                    "time_offset": 19331000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "f64ef291c9d44de8a01971c3c6a58d89",
+                                    "time_offset": 19900000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "f67994cc2fac4f06838750b9457494e2",
+                                    "time_offset": 20468000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "865862322e6d41c3a0c5295dc7975d3e",
+                                    "time_offset": 21026000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "3e07ab6ef90a498ab31b3f764a8d2e91",
+                                    "time_offset": 21606000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "84ee1f32f93c436b8a02f1e4d58695f7",
+                                    "time_offset": 22152000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c833c6a06d69445e9c40e177b4e0ef63",
+                                    "time_offset": 22721000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "dea1754b24244c25b9b1687e51766ce8",
+                                    "time_offset": 23278000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "29a2643ec14d48eaa0e494cb89da29c9",
+                                    "time_offset": 23847000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "749065a96d644602b51e5fa1d3d6192d",
+                                    "time_offset": 24404000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "7d5590d1c09948b491e7ba109f4bbfb4",
+                                    "time_offset": 24961000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "76efb9debc7642ac82d08a175bef3f9f",
+                                    "time_offset": 25542000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "74b4ba3e3cfd48c7a705026b1b24fb2f",
+                                    "time_offset": 26099000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "502cc13a818045f4ae3b61b79ff04140",
+                                    "time_offset": 26645000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "136788f9dc994118870ab9f0fc9f6012",
+                                    "time_offset": 27225000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "1611ca00abde453894677434bfb50cfb",
+                                    "time_offset": 27771000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "1a6dd3f00202411cb9f396392605fb74",
+                                    "time_offset": 28340000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e8fe3e63ada244b6908f8b03670aa654",
+                                    "time_offset": 28897000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e8e2ed8e22f3475baf0541050e983a88",
+                                    "time_offset": 29466000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "38a086a491b0460bad1066d8d870cce2",
+                                    "time_offset": 30023000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "afa049dbaf944056873d66d948a062b4",
+                                    "time_offset": 30581000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "6dcac1fa82514a25bd7b6ef5080bbee9",
+                                    "time_offset": 31150000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fc0aadb9cdff4177b2b042eb2c66f6ab",
+                                    "time_offset": 31718000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "35602afedb924a139f451225df151ab4",
+                                    "time_offset": 32276000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "a16c148b66e6473b8ec79cb42402671c",
+                                    "time_offset": 32856000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "9ce6173ab020495ea38cc898acae6242",
+                                    "time_offset": 33308999,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "086c4cc28774482ebbe2b493d8e8ecb2",
+                                    "time_offset": 33773000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "9d934a175ef645e7a80484866bd07ee2",
+                                    "time_offset": 34331000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c244e316601448a2b788f328ec97a362",
+                                    "time_offset": 34900000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "902bb51ecc454455a3e318f940ab0c24",
+                                    "time_offset": 35468000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "47060cbca1c1498d9395f591ea0cc17d",
+                                    "time_offset": 36026000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "c0bbd522bab44e73b6eee6aebe354852",
+                                    "time_offset": 36595000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "2a5bc19538504e5b80f20f76751cce86",
+                                    "time_offset": 37152000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "888d892138c44215a59d77ccaad21e34",
+                                    "time_offset": 37895000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e762634c09e64aa68329aed65befb796",
+                                    "time_offset": 38464000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "db89d63200e24d92b9a609a783a710c7",
+                                    "time_offset": 39021000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "137570a4998c448e848a9fbfa6ee1cbd",
+                                    "time_offset": 39590000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "d508659892844e25b11f2541b1354cfb",
+                                    "time_offset": 40147000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "e375c794c6b440fb884282957d7f0539",
+                                    "time_offset": 40728000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "d78c5c8ae2fd4fd6b10c91682453de44",
+                                    "time_offset": 41273000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "a1dbe335f14a4d469d96e2e1792b7afe",
+                                    "time_offset": 41842000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "761deef1ef144a95884f794f9e2b13b8",
+                                    "time_offset": 42411000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "6dbb74c6850849ca981fb1b3d7889438",
+                                    "time_offset": 42969000,
+                                    "values": [
+                                        1.0
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "af249755c0da448ab553de7b6a66cb11",
+                                    "time_offset": 43537000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "5f51e7ec67e343179b159753a96dc349",
+                                    "time_offset": 44095000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "5ea560490ddf44b7a65d1b0e83ef30d5",
+                                    "time_offset": 44652000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fd2de3bb1cb54c7f8cee7c92cfba5a3e",
+                                    "time_offset": 45232000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "dbf3f14438ae415bb660651b1372ff01",
+                                    "time_offset": 45778000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "1f8df0b0757942dc996477bcb706e73a",
+                                    "time_offset": 46335000,
+                                    "values": [
+                                        1.05
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "12f82bb4a6d34f2fbf92dc18d1c98986",
+                                    "time_offset": 46904000,
+                                    "values": [
+                                        1.07
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "f9f0fbb7295443d1a91b67707a5c9da0",
+                                    "time_offset": 47473000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "0887db42fa9040fbbc8349fe1aced992",
+                                    "time_offset": 48019000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "fff686d6a20145a988730d64357c4666",
+                                    "time_offset": 48599000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "ca2e992def864f9ab734ca0fd16c9ed4",
+                                    "time_offset": 49145000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "cba8af568c154388b6097fffdfeb3020",
+                                    "time_offset": 49714000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "3ecb32df26324f4794053babd09b11b4",
+                                    "time_offset": 50271000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "61daca212c2244feac905216bf3a5f8e",
+                                    "time_offset": 50840000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "ead731d7a5cd4dd19ab6692f66828d89",
+                                    "time_offset": 51409000,
+                                    "values": [
+                                        1.03
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "6d7b179f21344477b0c66f5c5e3f251d",
+                                    "time_offset": 51966000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "7b507bf9c2264f8981f907656d0d824d",
+                                    "time_offset": 52547000,
+                                    "values": [
+                                        1.02
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "8af2d00c0ef845728cf6725b5e30c433",
+                                    "time_offset": 53092000,
+                                    "values": [
+                                        0.98
+                                    ]
+                                },
+                                {
+                                    "curveType": "Line",
+                                    "graphID": "",
+                                    "left_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "right_control": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    },
+                                    "id": "26a6a64e50594af7a24865a179d79181",
+                                    "time_offset": 53650000,
+                                    "values": [
+                                        0.97
+                                    ]
+                                }
+                            ],
+                            "material_id": "",
+                            "property_type": "KFTypeScaleY"
+                        }
+                    ],
+                    "keyframe_refs": [],
+                    "source_timerange": {
+                        "start": 0,
+                        "duration": 53766000
+                    },
+                    "speed": 1.0,
+                    "volume": 1.0,
+                    "extra_material_refs": [
+                        "57bae8c7f7e649878cb3f79c8d2efa7b"
+                    ],
+                    "clip": {
+                        "alpha": 1.0,
+                        "flip": {
+                            "horizontal": false,
+                            "vertical": false
+                        },
+                        "rotation": 0.0,
+                        "scale": {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "transform": {
+                            "x": 0,
+                            "y": 0
+                        }
+                    },
+                    "uniform_scale": {
+                        "on": false,
+                        "value": 1.0
+                    },
+                    "hdr_settings": {
+                        "intensity": 1.0,
+                        "mode": 1,
+                        "nits": 1000
+                    },
+                    "render_index": 0
+                }
+            ],
+            "type": "video"
+        },
+        {
+            "attribute": 0,
+            "flag": 0,
+            "id": "23eaa54c238745faabdbe4d042789b2e",
+            "is_default_name": false,
+            "name": "bobap_bgm",
+            "segments": [
+                {
+                    "enable_adjust": true,
+                    "enable_color_correct_adjust": false,
+                    "enable_color_curves": true,
+                    "enable_color_match_adjust": false,
+                    "enable_color_wheels": true,
+                    "enable_lut": true,
+                    "enable_smart_color_adjust": false,
+                    "last_nonzero_volume": 1.0,
+                    "reverse": false,
+                    "track_attribute": 0,
+                    "track_render_index": 0,
+                    "visible": true,
+                    "id": "7b9bc0b6fefb4a6d8be0f55a2a1f09b1",
+                    "material_id": "9d478d287d3d344aa5f8fbdd9bb29749",
+                    "target_timerange": {
+                        "start": 0,
+                        "duration": 53766000
+                    },
+                    "common_keyframes": [],
+                    "keyframe_refs": [],
+                    "source_timerange": {
+                        "start": 0,
+                        "duration": 53766000
+                    },
+                    "speed": 1.0,
+                    "volume": 0.75,
+                    "extra_material_refs": [
+                        "7199e39fc20d418ea98aee92f5d3e102"
+                    ],
+                    "clip": null,
+                    "hdr_settings": null,
+                    "render_index": 0
+                }
+            ],
+            "type": "audio"
+        },
+        {
+            "attribute": 0,
+            "flag": 0,
+            "id": "0e4a4607baf042848f13e554e7aef64b",
+            "is_default_name": false,
+            "name": "bobap_vi_subtitle",
+            "segments": [
+                {
+                    "enable_adjust": true,
+                    "enable_color_correct_adjust": false,
+                    "enable_color_curves": true,
+                    "enable_color_match_adjust": false,
+                    "enable_color_wheels": true,
+                    "enable_lut": true,
+                    "enable_smart_color_adjust": false,
+                    "last_nonzero_volume": 1.0,
+                    "reverse": false,
+                    "track_attribute": 0,
+                    "track_render_index": 0,
+                    "visible": true,
+                    "id": "fdb18e850ffe4b0a932d2af649c485fd",
+                    "material_id": "8d114a226ff943379100cf8b6592547f",
+                    "target_timerange": {
+                        "start": 1000000,
+                        "duration": 4000000
+                    },
+                    "common_keyframes": [],
+                    "keyframe_refs": [],
+                    "source_timerange": null,
+                    "speed": 1.0,
+                    "volume": 1.0,
+                    "extra_material_refs": [
+                        "80413eca09004a388d85e4d8fd334ea0"
+                    ],
+                    "clip": {
+                        "alpha": 1.0,
+                        "flip": {
+                            "horizontal": false,
+                            "vertical": false
+                        },
+                        "rotation": 0.0,
+                        "scale": {
+                            "x": 1.3,
+                            "y": 1.3
+                        },
+                        "transform": {
+                            "x": 0.0,
+                            "y": -0.75
+                        }
+                    },
+                    "uniform_scale": {
+                        "on": true,
+                        "value": 1.0
+                    },
+                    "render_index": 15999
+                },
+                {
+                    "enable_adjust": true,
+                    "enable_color_correct_adjust": false,
+                    "enable_color_curves": true,
+                    "enable_color_match_adjust": false,
+                    "enable_color_wheels": true,
+                    "enable_lut": true,
+                    "enable_smart_color_adjust": false,
+                    "last_nonzero_volume": 1.0,
+                    "reverse": false,
+                    "track_attribute": 0,
+                    "track_render_index": 0,
+                    "visible": true,
+                    "id": "cc37c3e087e749c494cac76d134bcddd",
+                    "material_id": "9df0e1814a674dc680e5bed223d50f9c",
+                    "target_timerange": {
+                        "start": 6000000,
+                        "duration": 6000000
+                    },
+                    "common_keyframes": [],
+                    "keyframe_refs": [],
+                    "source_timerange": null,
+                    "speed": 1.0,
+                    "volume": 1.0,
+                    "extra_material_refs": [
+                        "7d044e0fa9e5478ca560644da57b104f"
+                    ],
+                    "clip": {
+                        "alpha": 1.0,
+                        "flip": {
+                            "horizontal": false,
+                            "vertical": false
+                        },
+                        "rotation": 0.0,
+                        "scale": {
+                            "x": 1.3,
+                            "y": 1.3
+                        },
+                        "transform": {
+                            "x": 0.0,
+                            "y": -0.75
+                        }
+                    },
+                    "uniform_scale": {
+                        "on": true,
+                        "value": 1.0
+                    },
+                    "render_index": 15999
+                },
+                {
+                    "enable_adjust": true,
+                    "enable_color_correct_adjust": false,
+                    "enable_color_curves": true,
+                    "enable_color_match_adjust": false,
+                    "enable_color_wheels": true,
+                    "enable_lut": true,
+                    "enable_smart_color_adjust": false,
+                    "last_nonzero_volume": 1.0,
+                    "reverse": false,
+                    "track_attribute": 0,
+                    "track_render_index": 0,
+                    "visible": true,
+                    "id": "2281ed037f7549bf8cac09b08dea73b1",
+                    "material_id": "2ef1f1eb63ad40c2b0d44267709dea43",
+                    "target_timerange": {
+                        "start": 13000000,
+                        "duration": 7000000
+                    },
+                    "common_keyframes": [],
+                    "keyframe_refs": [],
+                    "source_timerange": null,
+                    "speed": 1.0,
+                    "volume": 1.0,
+                    "extra_material_refs": [
+                        "c02b0a4c94f145c29ecdb875394b6bd1"
+                    ],
+                    "clip": {
+                        "alpha": 1.0,
+                        "flip": {
+                            "horizontal": false,
+                            "vertical": false
+                        },
+                        "rotation": 0.0,
+                        "scale": {
+                            "x": 1.3,
+                            "y": 1.3
+                        },
+                        "transform": {
+                            "x": 0.0,
+                            "y": -0.75
+                        }
+                    },
+                    "uniform_scale": {
+                        "on": true,
+                        "value": 1.0
+                    },
+                    "render_index": 15999
+                }
+            ],
+            "type": "text"
+        }
+    ],
+    "update_time": 0,
+    "version": 360000,
+    "platform": {
+        "app_id": 359289,
+        "app_source": "cc",
+        "app_version": "6.5.0",
+        "device_id": "c4ca4238a0b923820dcc509a6f75849b",
+        "hard_disk_id": "307563e0192a94465c0e927fbc482942",
+        "mac_address": "c3371f2d4fb02791c067ce44d8fb4ed5",
+        "os": "mac",
+        "os_version": "15.5"
+    }
+}
