@@ -78,12 +78,12 @@ def add_subtitle_impl(
             srt_content = response.text
         except Exception as e:
             raise Exception(f"Failed to download subtitle file: {str(e)}")
-    elif os.path.isfile(srt_path):  # Check if it's a file
+    elif srt_path.lower().endswith(('.srt', '.txt')) or os.path.isfile(srt_path):  # Check if it's a file or file path
         try:
             with open(srt_path, 'r', encoding='utf-8') as f:
                 srt_content = f.read()
         except Exception as e:
-            raise Exception(f"Failed to read local subtitle file: {str(e)}")
+            raise Exception(f"Không thể đọc file phụ đề tại: {srt_path}. Chi tiết lỗi: {str(e)}")
     else:
         # If not a URL or local file, use content directly
         srt_content = srt_path
