@@ -15,9 +15,8 @@ import random
 import subprocess
 import requests
 
-CAPCUT_API_PORT  = 9001
+CAPCUT_API_PORT  = 9000   # Port mặc định của ashreo/CapCutAPI (settings/local.py)
 CAPCUT_API_URL   = f"http://localhost:{CAPCUT_API_PORT}"
-LICENSE_KEY      = "539C3FEB-74AE48D4-A964D52B-C520F801"  # trial key
 
 # ─── Style Sub — Bo Bắp Media ─────────────────────────────────────────────────
 # Phong cách: cổ trang / kiếm hiệp / dễ thương + dễ đọc trên mobile
@@ -40,7 +39,7 @@ BOBAP_SUB_STYLE = {
 
     # Vị trí: căn giữa, cách đáy ~12.5% (transform_y = 0.75 trong tọa độ [-1,1])
     "transform_x":      0.0,
-    "transform_y":      0.75,
+    "transform_y":      -0.75,
 
     # Scale 130% theo yêu cầu user
     "scale_x":          1.3,
@@ -64,6 +63,9 @@ def get_capcut_draft_dir():
         # CapCut International (Windows)
         os.path.join(userprofile, "AppData", "Local", "CapCut",
                      "User Data", "Projects", "com.lemon.lvideo-pc", "default"),
+        # CapCut International (Alternative path found)
+        os.path.join(userprofile, "AppData", "Local", "CapCut",
+                     "User Data", "Projects", "com.lveditor.draft"),
         # CapCut older path
         os.path.join(userprofile, "Documents", "CapCut",
                      "User Data", "Projects", "com.lemon.lvideo-pc", "default"),
@@ -106,11 +108,15 @@ def start_capcut_server(capcut_api_dir, log_callback=None):
         env={**os.environ, "FLASK_ENV": "production"},
     )
 
-    # Chờ server sẵn sàng
-    for _ in range(40):
+    # Chờ server sẵn sàng — ashreo/CapCutAPI không có /health, dùng /create_draft để probe
+    for i in range(60):   # Chờ tối đa 30 giây (60 × 0.5s)
         try:
-            r = requests.get(f"{CAPCUT_API_URL}/health", timeout=1)
-            if r.status_code == 200:
+            r = requests.post(
+                f"{CAPCUT_API_URL}/create_draft",
+                json={"width": 100, "height": 100},
+                timeout=2,
+            )
+            if r.status_code in (200, 400):
                 if log_callback:
                     log_callback("   ✅ CapCutAPI server sẵn sàng!")
                 return _server_proc
@@ -118,21 +124,8 @@ def start_capcut_server(capcut_api_dir, log_callback=None):
             pass
         time.sleep(0.5)
 
-    # Server không phản hồi — kiểm tra xem có endpoint khác không
-    # Một số version không có /health, thử /create_draft
-    try:
-        r = requests.post(f"{CAPCUT_API_URL}/create_draft",
-                          json={"license_key": LICENSE_KEY, "width": 100, "height": 100},
-                          timeout=3)
-        if r.status_code in (200, 400):
-            if log_callback:
-                log_callback("   ✅ CapCutAPI server sẵn sàng (no /health endpoint)!")
-            return _server_proc
-    except Exception:
-        pass
-
     _server_proc.terminate()
-    raise RuntimeError("CapCutAPI server không khởi động được sau 20 giây.")
+    raise RuntimeError("CapCutAPI server không khởi động được sau 30 giây.")
 
 
 def stop_capcut_server():
@@ -147,7 +140,7 @@ def stop_capcut_server():
 
 def _post(endpoint, data, timeout=120):
     """POST request đến CapCutAPI, raise nếu thất bại."""
-    data["license_key"] = LICENSE_KEY
+    # ashreo/CapCutAPI không cần license_key
     r = requests.post(f"{CAPCUT_API_URL}/{endpoint}", json=data, timeout=timeout)
     r.raise_for_status()
     result = r.json()
@@ -223,29 +216,29 @@ def api_create_draft(width=1920, height=1080):
 
 def api_add_video(draft_id, video_path, video_duration, width=1920, height=1080):
     out = _post("add_video", {
-        "draft_id":    draft_id,
-        "video_url":   video_path,
-        "width":       width,
-        "height":      height,
-        "start":       0,
-        "end":         video_duration,
+        "draft_id":     draft_id,
+        "video_url":    video_path,
+        "width":        width,
+        "height":       height,
+        "start":        0,
+        "end":          video_duration,
         "target_start": 0,
-        "track_name":  "main_video",
+        "track_name":   "main_video",
     })
-    return out["draft_id"]
+    return out.get("draft_id", draft_id)
 
 
 def api_add_audio(draft_id, audio_path, video_duration):
     out = _post("add_audio", {
-        "draft_id":    draft_id,
-        "audio_url":   audio_path,
-        "start":       0,
-        "end":         video_duration,
+        "draft_id":     draft_id,
+        "audio_url":    audio_path,
+        "start":        0,
+        "end":          video_duration,
         "target_start": 0,
-        "volume":      0.75,
-        "track_name":  "bobap_bgm",
+        "volume":       0.75,
+        "track_name":   "bobap_bgm",
     })
-    return out["draft_id"]
+    return out.get("draft_id", draft_id)
 
 
 def api_add_subtitle(draft_id, srt_path, width=1920, height=1080):
@@ -257,20 +250,35 @@ def api_add_subtitle(draft_id, srt_path, width=1920, height=1080):
         **BOBAP_SUB_STYLE,
     }
     out = _post("add_subtitle", payload)
-    return out["draft_id"]
+    return out.get("draft_id", draft_id)
 
 
 def api_add_zoom_keyframes(draft_id, times, values):
     if not times:
         return draft_id
+    # Cần tạo list property_types có cùng độ dài với times và values
+    # Mỗi thời điểm t cần 2 keyframe: scale_x và scale_y
+    expanded_props = []
+    expanded_times = []
+    expanded_vals  = []
+    for t, v in zip(times, values):
+        # Thêm scale_x
+        expanded_props.append("scale_x")
+        expanded_times.append(t)
+        expanded_vals.append(v)
+        # Thêm scale_y
+        expanded_props.append("scale_y")
+        expanded_times.append(t)
+        expanded_vals.append(v)
+
     out = _post("add_video_keyframe", {
         "draft_id":       draft_id,
         "track_name":     "main_video",
-        "property_types": ["scale_x", "scale_y"],
-        "times":          times,
-        "values":         values,
+        "property_types": expanded_props,
+        "times":          expanded_times,
+        "values":         expanded_vals,
     })
-    return out["draft_id"]
+    return out.get("draft_id", draft_id)
 
 
 def api_save_draft(draft_id, draft_folder):

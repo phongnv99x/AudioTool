@@ -451,9 +451,46 @@ class App(ctk.CTk):
             self.status_label.configure(text="Giai đoạn 2: Đang rà soát toàn bộ xưng hô và tên nhân vật...")
             self.progress_bar.set(0.85)
             
-            review_input = [{"id": idx, "zh": self.loaded_subs[idx].text.replace('\n', ' '), "vi": txt} for idx, txt in enumerate(translated_results)]
+            review_input = [{"id": idx, "zh": self.loaded_subs[idx].text.replace('\n', ' '), lang: txt} for idx, txt in enumerate(translated_results)]
             
-            review_prompt = f"""
+            if lang == "ja":
+                review_prompt = f"""
+Read the entire drama script (along with original Chinese and translated Japanese) below carefully.
+Task: Detect and correct any Japanese translation lines that have inconsistent character pronouns (e.g., mixing informal/formal pronouns, or character-specific speech styles) or inconsistent character names/titles.
+Based on the general context, STANDARDIZE into a SINGLE consistent way of speaking/addressing for the same character or group of characters.
+Ensure the style is appropriate for a high-quality Japanese drama or anime subtitle.
+
+ONLY return a JSON array containing the lines that NEED CORRECTION. Do not return lines that are correct.
+Mandatory format:
+[
+  {{"id": 15, "text": "新しい日本語訳"}},
+  {{"id": 89, "text": "新しい日本語訳"}}
+]
+If there are no incorrect lines, return an empty array [].
+
+Script:
+{json.dumps(review_input, ensure_ascii=False)}
+"""
+            elif lang == "ko":
+                review_prompt = f"""
+아래의 전체 드라마 대본(중국어 원문 및 한국어 번역문 포함)을 주의 깊게 읽으십시오.
+임무: 캐릭터 호칭/말투가 일관되지 않거나(예: 존댓말과 반말이 뒤섞임, 캐릭터 고유의 말투 불일치) 캐릭터 이름/직함이 일관되지 않은 한국어 번역 문장을 감지하여 수정하십시오.
+전반적인 맥락에 따라 동일 인물 또는 동일 그룹의 캐릭터에 대해 일관된 호칭 및 말투로 단일화하십시오.
+전문 더빙 드라마/애니메이션 자막 스타일에 적합한 자연스럽고 매끄러운 한국어 표현으로 완성해 주십시오.
+
+수정이 필요한 문장들만 JSON 배열 형태로 반환하십시오. 올바른 문장은 포함하지 마십시오.
+필수 반환 형식:
+[
+  {{"id": 15, "text": "수정된 한국어 번역"}},
+  {{"id": 89, "text": "수정된 한국어 번역"}}
+]
+오류가 있는 문장이 없다면 빈 배열 []을 반환하십시오.
+
+대본:
+{json.dumps(review_input, ensure_ascii=False)}
+"""
+            else: # default: "vi"
+                review_prompt = f"""
 Đọc kỹ toàn bộ kịch bản phim cổ trang (kèm nguyên tác Tiếng Trung) dưới đây.
 Nhiệm vụ: Phát hiện và sửa lại các câu Tiếng Việt bị dịch sai lệch xưng hô (đặc biệt: lúc xưng "nô tài" lúc xưng "nô tỳ" lung tung, hoặc xưng hô không nhất quán) hoặc tên nhân vật bị viết sai/chưa đồng nhất.
 Hãy dựa vào bối cảnh chung để CHUẨN HÓA lại MỘT CÁCH XƯNG HÔ DUY NHẤT cho cùng một người/nhóm người. (Ví dụ: Nếu bối cảnh là cung nữ/nha hoàn đang nói, phải thống nhất sửa hết thành "nô tỳ", không để lộn xộn với "nô tài").
@@ -465,7 +502,7 @@ CHỈ TRẢ VỀ một mảng JSON chứa các câu CẦN SỬA, tuyệt đối 
   {{"id": 15, "text": "Phu quân, chàng đi đâu vậy?"}},
   {{"id": 89, "text": "Tiêu Viêm ca ca, huynh cẩn thận!"}}
 ]
-Nếu không có câu nào sai, trả về mảng rỗng [].
+If there are no incorrect lines, return an empty array [].
 
 Kịch bản:
 {json.dumps(review_input, ensure_ascii=False)}
@@ -690,10 +727,12 @@ Kịch bản:
                         if not os.path.exists(ascii_safe_path_mp3):
                             raise Exception("Không tìm thấy file MP3 đầu ra.")
 
-                        self.append_log("   -> Tách MP3 xong. Đang tải lên Gemini...")
-                        self.status_label2.configure(text="Đang tải Audio lên Gemini...")
-                        self.progress_bar2.set(0.1)
-                        uploaded_file = client.files.upload(file=ascii_safe_path_mp3)
+                # Tải file âm thanh (cả video đã tách hoặc file audio gốc) lên Gemini
+                if os.path.exists(ascii_safe_path_mp3):
+                    self.append_log("   -> Đang tải Audio lên Gemini...")
+                    self.status_label2.configure(text="Đang tải Audio lên Gemini...")
+                    self.progress_bar2.set(0.1)
+                    uploaded_file = client.files.upload(file=ascii_safe_path_mp3)
             finally:
                 for tmp_file in [ascii_safe_path_mp3, ascii_safe_path_in]:
                     try:
@@ -1042,7 +1081,11 @@ Kịch bản thoại (từ đầu đến cuối):
             self.progress_bar2.set(1.0)
             
             # Clean up the file on Google Server
-            client.files.delete(name=uploaded_file.name)
+            if uploaded_file:
+                try:
+                    client.files.delete(name=uploaded_file.name)
+                except:
+                    pass
             
         except Exception as e:
             self.status_label2.configure(text="Lỗi!")
@@ -1552,7 +1595,7 @@ KỊCH BẢN PHIM:
 
         self.btn_load_vid5 = ctk.CTkButton(self.btn_frame5, text="1. Chọn Video Gốc", command=self.load_video5)
         self.btn_load_vid5.pack(side="left", padx=5)
-        self.vid_lbl5 = ctk.CTkLabel(self.btn_frame5, text="Chưa chọn video")
+        self.vid_lbl5 = ctk.CTkLabel(self.btn_frame5, text="Chưa chọn video", width=200, anchor="w")
         self.vid_lbl5.pack(side="left", padx=5)
         
         self.chk_nvenc_var = ctk.BooleanVar(value=True)
@@ -1581,7 +1624,14 @@ KỊCH BẢN PHIM:
         path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4 *.mkv *.avi")])
         if path:
             self.video_path5 = path
-            self.vid_lbl5.configure(text=os.path.basename(path))
+            filename = os.path.basename(path)
+            if len(filename) > 25:
+                name, ext = os.path.splitext(filename)
+                trunc_len = max(5, 25 - len(ext) - 3)
+                display_name = name[:trunc_len] + "..." + ext
+            else:
+                display_name = filename
+            self.vid_lbl5.configure(text=display_name)
             self.btn_choose_roi.configure(state="normal")
             self.btn_create_ocr.configure(state="normal")
 
