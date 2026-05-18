@@ -391,15 +391,15 @@ class App(ctk.CTk):
             def translate_batch(batch_idx):
                 start_idx = batch_idx * batch_size
                 end_idx = min(start_idx + batch_size, len(texts))
-                batch = texts[start_idx:end_idx]
+                batch = [{"id": start_idx + i, "text": texts[start_idx + i]} for i in range(end_idx - start_idx)]
                 
                 prompt = (
                     f"You are a {lp['role']}. Your task is to translate the following subtitle lines "
                     f"from Chinese into {lp['target']}.\n"
                     f"IMPORTANT REQUIREMENTS:\n{lp['rules']}\n\n"
-                    f"The input is a JSON array of {len(batch)} sentences to translate. "
-                    f"You MUST return a JSON array of EXACTLY {len(batch)} translated strings. "
-                    f"One input = one output. Do not merge, split, skip, or add any lines.\n"
+                    f"The input is a JSON array of {len(batch)} objects to translate, each containing 'id' and 'text'. "
+                    f"You MUST return a JSON array of EXACTLY {len(batch)} translated objects, preserving the 'id' for each line.\n"
+                    f"One input = one output. Do not merge, split, skip, or add any lines. Keep the 'id' identical to the input.\n"
                     f"Input array:\n"
                     f"{json.dumps(batch, ensure_ascii=False)}\n"
                 )
@@ -416,11 +416,24 @@ class App(ctk.CTk):
                                 contents=contents_to_send,
                                 config=types.GenerateContentConfig(
                                     response_mime_type="application/json",
-                                    response_schema={"type": "ARRAY", "items": {"type": "STRING"}}
+                                    response_schema={
+                                        "type": "ARRAY",
+                                        "items": {
+                                            "type": "OBJECT",
+                                            "properties": {
+                                                "id": {"type": "INTEGER"},
+                                                "text": {"type": "STRING"}
+                                            },
+                                            "required": ["id", "text"]
+                                        }
+                                    }
                                 )
                             )
                             res_json = json.loads(response.text)
-                            return batch_idx, res_json, None
+                            if isinstance(res_json, list) and all(isinstance(x, dict) and "id" in x and "text" in x for x in res_json):
+                                return batch_idx, res_json, None
+                            else:
+                                raise Exception("Response schema mismatch")
                         except Exception as e:
                             err_str = str(e)
                             if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
@@ -429,7 +442,9 @@ class App(ctk.CTk):
                             elif "503" in err_str or "UNAVAILABLE" in err_str:
                                 time.sleep(5)
                                 continue
-                return batch_idx, ["[Lỗi Dịch]"] * len(batch), "Failed"
+                # Fallback: Trả về đầy đủ ID để không làm lệch các phần tử khác
+                fallback_res = [{"id": start_idx + i, "text": "[Lỗi Dịch]"} for i in range(end_idx - start_idx)]
+                return batch_idx, fallback_res, "Failed"
 
             completed_batches = 0
             
@@ -439,10 +454,10 @@ class App(ctk.CTk):
                 for future in concurrent.futures.as_completed(futures):
                     b_idx, res_json, err = future.result()
                     
-                    start_idx = b_idx * batch_size
-                    for j, text in enumerate(res_json):
-                        idx = start_idx + j
-                        if idx < len(translated_results):
+                    for item in res_json:
+                        idx = item.get("id")
+                        text = item.get("text")
+                        if idx is not None and 0 <= idx < len(translated_results):
                             translated_results[idx] = text
                             if idx < len(self.translated_subs):
                                 self.translated_subs[idx].text = text
