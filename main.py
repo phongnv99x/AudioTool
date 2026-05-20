@@ -1197,6 +1197,13 @@ Kịch bản thoại (từ đầu đến cuối):
                     "thumbnail image (if provided), create:\n"
                     "1. 3 video titles in Japanese (clickbait style, max curiosity, high CTR for YouTube JP audience).\n"
                     "2. 3 English AI thumbnail prompts (3 completely different concepts, accurate to the script):\n"
+                    "   - [IMPORTANT - REFERENCE IMAGE STYLE & CHARACTER INHERITANCE]:\n"
+                    "     If a sample thumbnail image is provided, analyze its design, color palette, lighting, composition, "
+                    "and character features (such as face, hair, costume style/color, posture). You MUST transfer, adapt, "
+                    "and incorporate these visual characteristics into the 3 generated thumbnail prompts. The generated prompts "
+                    "should keep the same character appearance, visual theme, or overall art style of the reference image, "
+                    "while adapting the scene to match the script's contents. If no image is provided, create from scratch in "
+                    "high-quality 3D Chinese animation style.\n"
                     "   - Concept 1 (Action/Climax): Male lead or enemy power explosion from the actual script.\n"
                     "   - Concept 2 (Female Character): A female character FROM the script — must include: "
                     "\"extremely beautiful, hyper-seductive, revealing fantasy outfit, deep cleavage, voluptuous body\".\n"
@@ -1220,6 +1227,13 @@ Kịch bản thoại (từ đầu đến cuối):
                     "thumbnail image (if provided), create:\n"
                     "1. 3 video titles in Korean (clickbait style, max curiosity, high CTR for YouTube KR audience).\n"
                     "2. 3 English AI thumbnail prompts (3 completely different concepts, accurate to the script):\n"
+                    "   - [IMPORTANT - REFERENCE IMAGE STYLE & CHARACTER INHERITANCE]:\n"
+                    "     If a sample thumbnail image is provided, analyze its design, color palette, lighting, composition, "
+                    "and character features (such as face, hair, costume style/color, posture). You MUST transfer, adapt, "
+                    "and incorporate these visual characteristics into the 3 generated thumbnail prompts. The generated prompts "
+                    "should keep the same character appearance, visual theme, or overall art style of the reference image, "
+                    "while adapting the scene to match the script's contents. If no image is provided, create from scratch in "
+                    "high-quality 3D Chinese animation style.\n"
                     "   - Concept 1 (Action/Climax): Male lead or enemy power explosion from the actual script.\n"
                     "   - Concept 2 (Female Character): A female character FROM the script — must include: "
                     "\"extremely beautiful, hyper-seductive, revealing fantasy outfit, deep cleavage, voluptuous body\".\n"
@@ -1242,6 +1256,13 @@ Bạn là một chuyên gia YouTube SEO và Đạo diễn Nghệ thuật chuyên
 Dựa vào nội dung kịch bản dưới đây (được trích xuất từ file phụ đề SRT, chủ yếu là lời thoại) và hình ảnh thumbnail mẫu (nếu có), hãy tạo:
 1. 3 Tiêu đề video (giật tít, khơi gợi sự tò mò để tăng CTR cao nhất).
 2. 3 Đoạn prompt bằng tiếng Anh (chi tiết, miêu tả ánh sáng, góc máy, chất lượng 8k) để tôi dùng làm lệnh vẽ AI Thumbnail. 
+
+[QUAN TRỌNG VỀ HÌNH ẢNH THAM CHIẾU / THUMBNAIL MẪU]
+Nếu tôi có tải lên hình ảnh thumbnail mẫu, hãy phân tích kỹ bức ảnh đó về:
+- Phong cách vẽ/đồ họa (nét vẽ, màu sắc chủ đạo, ánh sáng, độ tương phản).
+- Tạo hình nhân vật (kiểu tóc, khuôn mặt, trang phục, màu sắc quần áo, tư thế).
+- Bố cục chung của ảnh và cách đặt chữ.
+-> BẮT BUỘC phải kế thừa, lấy cảm hứng và đồng bộ hóa các yếu tố này vào 3 đoạn prompt vẽ ảnh (Concept 1, 2, 3) để ảnh tạo ra mới có cùng phong cách nghệ thuật, cùng tông màu hoặc cùng nhân vật tương tự như ảnh tham chiếu, kết hợp hài hòa với nội dung kịch bản dưới đây. Nếu không có ảnh mẫu, hãy tự sáng tạo theo phong cách hoạt hình 3D Trung Quốc chất lượng cao.
 
 BẮT BUỘC 3 PROMPT PHẢI LÀ 3 CONCEPT HOÀN TOÀN KHÁC NHAU NHƯNG PHẢI ĐÚNG VỚI NỘI DUNG KỊCH BẢN:
 - Concept 1 (Cao Trào/Chiến Đấu): Lấy cảnh hành động hoặc nhân vật nam chính/kẻ thù bùng nổ sức mạnh CÓ THẬT trong kịch bản (glowing aura, lightning). Bối cảnh tối, kỳ bí.
